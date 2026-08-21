@@ -12,13 +12,15 @@
 <link rel="icon" href="favicon-192.png" type="image/png" sizes="192x192">
 <link rel="icon" href="favicon-512.png" type="image/png" sizes="512x512">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="description" content="Evinize güneş hangi saatte, ne kadar giriyor? Cephe yönünü, katını ve karşı binayı gir; ışığın odaya kaç metre girdiğini gör. Türkiye'nin her noktası için ücretsiz.">
+<link rel="canonical" href="https://gunesalirmi.com/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Güneş Alır mı? — Evinize güneş hangi saatte, ne kadar giriyor">
 <meta property="og:description" content="Cephe yönünü, tarihi ve karşı binayı gir; ışığın odaya kaç metre girdiğini gör. Türkiye'nin her noktası için ücretsiz.">
 <meta property="og:image" content="https://gunesalirmi.com/og-gorsel.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://gunesalirmi.com/index.html">
+<meta property="og:url" content="https://gunesalirmi.com/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1182,38 +1184,38 @@ function gorselUret(){
   x.textAlign = "left";
 
   // ---- yıl boyunca ----
-  ustyazi("Yıl boyunca", 1054);
+  ustyazi("Yıl boyunca", 1044);
   var kutu = [[11,21,"21 Aralık"],[2,21,"21 Mart"],[5,21,"21 Haziran"]];
   var kw = sw/3;
   for(var k=0;k<3;k++){
     var r = gunBoyu(kutu[k][0], kutu[k][1], D.yer, D.cephe, D.kat, D.karsi, D.mesafe);
     var kx = KN + k*kw;
     x.fillStyle = "#68787E"; x.font = "600 21px " + AF;
-    x.fillText(buyuk(kutu[k][2]), kx, 1086);
+    x.fillText(buyuk(kutu[k][2]), kx, 1076);
     x.fillStyle = "#3B8574"; x.font = "800 40px " + AF;
-    x.fillText(r.saat.toFixed(1).replace(".",",") + " saat", kx, 1126);
+    x.fillText(r.saat.toFixed(1).replace(".",",") + " saat", kx, 1118);
   }
 
   // ---- uyarı ----
   x.fillStyle = "#9AA7AC"; x.font = "500 19px " + AF;
-  x.fillText("Bilgilendirme amaçlıdır, kesinlik içermez. Balkon, ağaç ve arazi eğimi hesaba katılmaz.", KN, 1148);
+  x.fillText("Bilgilendirme amaçlıdır, kesinlik içermez. Balkon, ağaç ve arazi eğimi hesaba katılmaz.", KN, 1152);
 
   // ---- iletişim bandı ----
-  x.fillStyle = "#F4F7F7"; x.fillRect(0, 1166, G, Y-1166);
-  var qrB = 128, qrX = G - KN - qrB, qrY = 1196;
+  x.fillStyle = "#F4F7F7"; x.fillRect(0, 1170, G, Y-1170);
+  var qrB = 116, qrX = G - KN - qrB, qrY = 1182;
   x.fillStyle = "#FFFFFF";
   x.beginPath(); x.roundRect(qrX-9, qrY-9, qrB+18, qrB+18, 12); x.fill();
   qrCiz(x, qrX, qrY, qrB);
   x.fillStyle = "#68787E"; x.font = "600 17px " + AF; x.textAlign = "center";
-  x.fillText("WhatsApp'tan yaz", qrX + qrB/2, qrY + qrB + 26);
+  x.fillText("WhatsApp'tan yaz", qrX + qrB/2, qrY + qrB + 22);
   x.textAlign = "left";
   x.fillStyle = "#2C3438"; x.font = "800 32px " + AF;
-  x.fillText("Armağan Kocabaş", KN, 1220);
+  x.fillText("Armağan Kocabaş", KN, 1214);
   x.fillStyle = "#68787E"; x.font = "500 23px " + AF;
-  x.fillText("İstanbul Lüks Konut Uzmanı · RE/MAX Eksen", KN, 1256);
+  x.fillText("İstanbul Lüks Konut Uzmanı · RE/MAX Eksen", KN, 1248);
   x.fillStyle = "#3B8574"; x.font = "700 25px " + AF;
-  x.fillText("0507 917 33 58", KN, 1296);
-  x.fillText("@rmx.armagankocabas", KN, 1330);
+  x.fillText("0507 917 33 58", KN, 1288);
+  x.fillText("@rmx.armagankocabas", KN, 1322);
   return cv;
 }
 
@@ -1478,6 +1480,13 @@ function raporSayfa3(){
   ];
   x.fillStyle = "#4A585F"; x.font = "500 24px " + AF2;
   for(var i=0;i<metin.length;i++) x.fillText(metin[i], KEN, 668 + i*40);
+
+  baslik(x, "Kitaplarım", 1420);
+  x.fillStyle = "#2C3438"; x.font = "700 25px " + AF2;
+  x.fillText("Soğuk Aramadan Sıcak Satışa: FSBO'nun Gücü", KEN, 1478);
+  x.fillText("Yeni Danışman El Kitabı", KEN, 1518);
+  x.fillStyle = "#68787E"; x.font = "500 21px " + AF2;
+  x.fillText("İkisi de Kitapyurdu'nda · Emlak danışmanları için yazıldı", KEN, 1558);
 
   baslik(x, "Hesap neye dayanıyor", 1160);
   var m2 = [
