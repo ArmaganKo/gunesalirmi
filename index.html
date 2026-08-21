@@ -841,7 +841,16 @@ function ss(dk){ var s = Math.floor(dk/60), d = dk%60;
 
 function yonAdi(der){
   var yakin = Math.round(der/45)*45 % 360;
-  return Math.abs(((der - yakin + 540)%360)-180) < 6 ? YON_AD[yakin] : YON_AD[yakin] + "'ye yakın";
+  var ad = YON_AD[yakin];
+  if(Math.abs(((der - yakin + 540)%360)-180) < 6) return ad;
+  // Türkçe yönelme eki: kalın/ince ünlü uyumu + ünlüyle bitiyorsa kaynaştırma y'si
+  var kucuk = ad.toLowerCase();
+  var sesliler = kucuk.replace(/[^aeıioöuü]/g, "");
+  var sonSesli = sesliler.charAt(sesliler.length - 1);
+  var sonHarf = kucuk.charAt(kucuk.length - 1);
+  var unluMu = "aeıioöuü".indexOf(sonHarf) >= 0;
+  var ek = ("aıou".indexOf(sonSesli) >= 0 ? "a" : "e");
+  return ad + "'" + (unluMu ? "y" : "") + ek + " yakın";
 }
 
 function cizAnlik(){
