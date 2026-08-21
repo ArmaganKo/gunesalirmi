@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gunesalirmi.com/sitemap.xml
