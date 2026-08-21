@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#FFFFFF">
+<title>Güneş Alır mı? — Evinize güneş hangi saatte, ne kadar giriyor</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16">
+<link rel="icon" href="favicon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="favicon-512.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Güneş Alır mı? — Evinize güneş hangi saatte, ne kadar giriyor">
+<meta property="og:description" content="Cephe yönünü, tarihi ve karşı binayı gir; ışığın odaya kaç metre girdiğini gör. Türkiye'nin her noktası için ücretsiz.">
+<meta property="og:image" content="https://gunesalirmi.com/og-gorsel.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://gunesalirmi.com/index.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --yesil:#3B8574;
+  --yesil-koyu:#2E6B5D;
+  --yesil-acik:#E8F1EE;
+  --zemin:#FFFFFF;
+  --panel:#F4F7F7;
+  --cizgi:#E6EBEB;
+  --metin:#2C3438;
+  --gri:#68787E;
+  --gunes:#E8A100;
+  --gunes-soluk:#FBF0D4;
+  --engel:#C0666E;
+  --dolayli:#6E9DC9;
+  --gece:#E6EAEC;
+  --ana:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#FFFFFF;overflow-x:hidden}
+button,a,select,input{-webkit-tap-highlight-color:rgba(59,133,116,.15)}
+body{
+  background:var(--zemin);color:var(--metin);
+  font-family:var(--ana);font-weight:400;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:calc(92px + env(safe-area-inset-bottom));
+}
+.wrap{max-width:1120px;margin:0 auto;padding:22px 20px 48px}
+.duzen{display:grid;gap:26px}
+@media(min-width:960px){
+  .duzen{grid-template-columns:370px minmax(0,1fr);align-items:start}
+  .sol{position:sticky;top:18px}
+}
+
+/* başlık */
+.marka{font-size:clamp(27px,7vw,38px);font-weight:800;letter-spacing:-.03em;margin:0}
+.marka em{font-style:normal;color:var(--yesil)}
+.altbaslik{
+  font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gri);font-weight:500;margin:5px 0 0;
+}
+.logo-sar{display:flex;align-items:center;gap:13px;text-decoration:none;color:inherit;cursor:pointer}
+.logo-sar img{width:52px;height:52px;object-fit:contain;flex:0 0 auto}
+.logo-sar > div{min-width:0}
+.sadece-yazdir{display:none}
+@media print{
+  .sadece-yazdir{
+    display:block;font-size:10pt;color:#68787E;
+    border-bottom:1px solid #E6EBEB;padding-bottom:3mm;margin:0 0 5mm;
+  }
+}
+.ustcizgi{border-bottom:1px solid var(--cizgi);padding-bottom:16px;margin-bottom:18px}
+
+/* nasıl kullanılır */
+.nasil-btn{
+  display:block;text-align:center;text-decoration:none;
+  background:var(--panel);color:var(--metin);
+  border-radius:13px;padding:16px;margin-bottom:20px;
+  font-weight:700;font-size:15px;
+}
+
+/* adım başlığı */
+.adim{
+  font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--yesil);margin:0 0 12px;
+}
+
+/* kontrol kartı */
+.kontrol{margin-bottom:28px}
+.satir{margin-bottom:20px}
+.satir:last-child{margin-bottom:0}
+label{display:block;font-size:14px;color:var(--gri);margin-bottom:7px}
+label b{color:var(--metin);font-weight:700}
+select,input[type=number]{
+  width:100%;font-family:var(--ana);font-size:16px;padding:13px;
+  background:var(--zemin);color:var(--metin);
+  border:1px solid var(--cizgi);border-radius:11px;
+  -webkit-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%2368787E' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;
+}
+.btn-ana{
+  width:100%;padding:15px;border:0;border-radius:13px;
+  background:var(--yesil);color:#fff;
+  font-family:var(--ana);font-size:16px;font-weight:700;cursor:pointer;
+}
+.btn-ana[disabled]{background:var(--panel);color:var(--gri);cursor:default}
+.btn-ikinci{
+  width:100%;padding:13px;border:0;border-radius:13px;margin-top:8px;
+  background:var(--panel);color:var(--metin);
+  font-family:var(--ana);font-size:15px;font-weight:600;cursor:pointer;
+}
+.koord{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.ipucu{font-size:13px;color:var(--gri);margin:9px 0 0;line-height:1.45}
+.yonler{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:11px}
+@media(min-width:560px){.yonler{grid-template-columns:repeat(8,1fr)}}
+.hizlilar{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:11px}
+@media(min-width:560px){.hizlilar{grid-template-columns:repeat(4,1fr)}}
+button.yon,button.hizli{
+  font-family:var(--ana);font-size:13px;font-weight:600;padding:11px 4px;
+  background:var(--panel);color:var(--metin);
+  border:0;border-radius:10px;cursor:pointer;
+}
+button.yon[aria-pressed="true"],button.hizli[aria-pressed="true"]{background:var(--yesil);color:#fff}
+input[type=range]{width:100%;accent-color:var(--yesil);margin:0}
+.ay-cetvel{
+  display:flex;justify-content:space-between;
+  font-size:10px;color:var(--gri);margin-top:5px;letter-spacing:.02em;
+}
+button.hizli{line-height:1.25}
+button.hizli small{
+  display:block;font-size:10px;font-weight:500;opacity:.75;margin-top:2px;
+}
+.hizlilar{grid-template-columns:repeat(2,1fr)}
+@media(min-width:560px){.hizlilar{grid-template-columns:repeat(4,1fr)}}
+.ikili{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.paylas{margin-bottom:24px}
+.paylas .btn-ikinci{margin-top:9px}
+.pusula-oku{
+  display:flex;align-items:baseline;gap:12px;justify-content:center;
+  background:var(--panel);border-radius:13px;padding:20px;margin:10px 0;
+}
+#pusulaDer{font-family:var(--mono);font-weight:700;font-size:38px;font-variant-numeric:tabular-nums}
+#pusulaYon{font-size:16px;font-weight:700;color:var(--yesil)}
+.saat-sar{display:flex;align-items:center;gap:12px}
+.saat-sar input{flex:1}
+.oynat{
+  flex:0 0 auto;width:48px;height:48px;border-radius:50%;
+  background:var(--yesil);color:#fff;border:0;font-size:17px;cursor:pointer;
+}
+:focus-visible{outline:2px solid var(--yesil);outline-offset:2px}
+
+/* sahne */
+.sahne{border:1px solid var(--cizgi);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.sahne-ust{display:grid;grid-template-columns:1fr}
+@media(min-width:720px){.sahne-ust{grid-template-columns:296px 1fr}}
+.kutu{padding:18px}
+.kutu + .kutu{border-top:1px solid var(--cizgi)}
+@media(min-width:720px){.sahne-ust .kutu + .kutu{border-top:0;border-left:1px solid var(--cizgi)}}
+.kutu-baslik{
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gri);font-weight:600;margin:0 0 12px;
+}
+canvas{display:block;width:100%;height:auto;touch-action:manipulation}
+
+.durum{
+  padding:14px 16px;border-top:1px solid var(--cizgi);background:var(--panel);
+  display:flex;align-items:center;gap:11px;font-weight:700;font-size:15px;
+}
+.nokta{width:12px;height:12px;border-radius:50%;flex:0 0 auto}
+.durum-not{
+  font-weight:500;font-size:12px;color:var(--gri);
+  margin-left:auto;text-align:right;font-family:var(--mono);
+}
+.okuma{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--cizgi);border-top:1px solid var(--cizgi)}
+@media(min-width:560px){.okuma{grid-template-columns:repeat(4,1fr)}}
+.hucre{background:var(--zemin);padding:12px 14px}
+.hucre-etiket{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--gri);margin-bottom:3px}
+.hucre-deger{font-family:var(--mono);font-weight:700;font-size:20px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+
+.serit-sar{padding:16px;border-top:1px solid var(--cizgi)}
+.serit{display:flex;height:32px;border-radius:6px;overflow:hidden;background:var(--gece)}
+.serit i{flex:1 1 0}
+.serit-eksen{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--gri);margin-top:6px}
+.efsane{display:flex;flex-wrap:wrap;gap:13px;margin-top:12px;font-size:12px;color:var(--gri)}
+.efsane span{display:flex;align-items:center;gap:6px}
+.sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+.mevsim{display:grid;grid-template-columns:1fr;gap:1px;background:var(--cizgi);border:1px solid var(--cizgi);border-radius:14px;overflow:hidden;margin-bottom:22px}
+@media(min-width:560px){.mevsim{grid-template-columns:repeat(3,1fr)}}
+.mev{background:var(--zemin);padding:16px}
+.mev-ad{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gri);font-weight:600;margin-bottom:5px}
+.mev-saat{font-family:var(--mono);font-weight:700;font-size:26px;font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:var(--yesil)}
+.mev-bar{height:5px;background:var(--panel);border-radius:3px;margin-top:9px;overflow:hidden}
+.mev-bar i{display:block;height:100%;background:var(--gunes)}
+.mev-not{font-size:12px;color:var(--gri);margin-top:7px}
+
+.dipnot{font-size:13px;color:var(--gri);line-height:1.55}
+.dipnot p{margin:0 0 9px}
+.dipnot b{color:var(--metin)}
+
+
+/* --- alt bilgi kartları --- */
+.altbilgi{margin-top:26px;padding-top:20px;border-top:1px solid var(--cizgi)}
+.ab-ad{font-size:14px;font-weight:800;letter-spacing:-.01em;margin:0 0 3px}
+.ab-rol{font-size:12.5px;color:var(--gri);margin:0 0 20px}
+.ab-baslik{
+  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--yesil);margin:0 0 9px;
+}
+.ab-blok{margin-bottom:18px}
+.ab-grid{display:grid;grid-template-columns:1fr;gap:9px}
+@media(min-width:560px){.ab-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.ab-grid.uc{grid-template-columns:repeat(3,1fr)}}
+.ab-kart{
+  display:flex;align-items:center;gap:11px;
+  padding:12px 14px;border:1px solid var(--cizgi);border-radius:12px;
+  text-decoration:none;color:var(--metin);background:#fff;
+}
+.ab-kart:hover{background:var(--panel);border-color:var(--yesil)}
+.ab-kart svg{width:24px;height:24px;flex:0 0 auto}
+.ab-kart div{min-width:0}
+.ab-kart b{display:block;font-size:13.5px;font-weight:700;line-height:1.25}
+.ab-kart em{display:block;font-style:normal;font-size:11.5px;color:var(--gri);margin-top:2px}
+.ab-not{font-size:12px;color:var(--gri);margin:16px 0 0;line-height:1.5}
+@media print{.altbilgi{display:none !important}}
+.imza{margin-top:22px;padding-top:14px;border-top:1px solid var(--cizgi);font-size:12px;color:var(--gri)}
+
+.cta{
+  position:fixed;left:0;right:0;bottom:0;padding:12px 16px;
+  background:linear-gradient(to top,rgba(255,255,255,.98) 62%,rgba(255,255,255,0));
+}
+.cta a{
+  display:block;max-width:848px;margin:0 auto;padding:16px;
+  background:var(--yesil);color:#fff;text-decoration:none;text-align:center;
+  border-radius:999px;font-weight:700;font-size:15px;
+}
+
+@media (prefers-color-scheme:dark){
+  :root{
+    color-scheme:light;
+    --zemin:#FFFFFF; --panel:#F4F7F7; --cizgi:#E6EBEB;
+    --metin:#2C3438; --gri:#68787E;
+  }
+  html,body{background:#FFFFFF;color:#2C3438}
+}
+
+/* ---- Tarayıcıdan yazdırma / PDF'e bas ---- */
+@media print{
+  @page{ size:A4; margin:14mm 12mm; }
+  body{ padding-bottom:0; background:#fff; }
+  .wrap{ max-width:none; padding:0; }
+
+  /* Başlık kendi görselinden kopmasın */
+  .sahne, .kutu, .mevsim, .mev, .kart, .cephe, .serit-sar,
+  .okuma, .durum, .uyari, details.sss{
+    break-inside:avoid; page-break-inside:avoid;
+  }
+  .kutu-baslik, .adim, h1, h2, h3{
+    break-after:avoid; page-break-after:avoid;
+  }
+  .sahne-ust{ grid-template-columns:1fr !important; }
+  .duzen{ grid-template-columns:1fr !important; }
+  .sol{ position:static !important; }
+
+  /* JS satır içi yükseklik yazıyor; yazdırmada onu ez ki kutu sayfaya sığsın */
+  canvas{
+    height:auto !important;
+    width:auto !important;
+    max-width:100% !important;
+    max-height:88mm !important;
+    display:block !important;
+    margin:0 auto !important;
+  }
+  .kutu{ padding:8mm 6mm !important; }
+  .kutu-baslik{ margin-bottom:4mm !important; }
+
+  /* Kâğıtta işe yaramayan denetimleri gizle */
+  .kontrol input[type=range], .yonler, .hizlilar, .oynat,
+  .btn-ana, .btn-ikinci, .gps, .cta, .nasil-btn,
+  #pusulaKutu, #pusulaNot, .paylas{ display:none !important; }
+  select, input[type=number]{ border:0; padding:0; background:none; font-weight:700; }
+
+  a[href]{ text-decoration:none; color:#2C3438; }
+  .dipnot{ break-inside:avoid; }
+}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="sadece-yazdir">Cephe Güneş Analizi · gunesalirmi.com</p>
+  <div class="ustcizgi">
+    <a class="logo-sar" href="index.html" title="Baştan başla">
+      <img id="markaLogo" alt="Güneş Alır mı?">
+      <div>
+        <p class="marka">Güneş <em>Alır mı?</em></p>
+        <p class="altbaslik">Evinize güneş hangi saatte, ne kadar giriyor</p>
+      </div>
+    </a>
+  </div>
+
+  <a class="nasil-btn" href="nasil-kullanilir.html">❓ Nasıl kullanılır?</a>
+
+  <div class="duzen">
+    <div class="sol">
+  <div class="kontrol">
+    <p class="adim">1 · Konum ve cephe</p>
+    <div class="satir">
+      <label for="konum">Konum — <b id="konumAd">Üsküdar</b></label>
+      <select id="konum"></select>
+      <button class="btn-ikinci" id="gps">Konumumu kullan</button>
+      <div class="koord">
+        <div>
+          <label for="enlem">Enlem</label>
+          <input type="number" id="enlem" step="0.0001" value="41.0225" inputmode="decimal">
+        </div>
+        <div>
+          <label for="boylam">Boylam</label>
+          <input type="number" id="boylam" step="0.0001" value="29.0140" inputmode="decimal">
+        </div>
+      </div>
+      <p class="ipucu" id="gpsNot">Listede yoksa konumunu kullan ya da koordinatı elle gir — Türkiye'nin her noktası çalışır.</p>
+    </div>
+    <div class="satir">
+      <label>Cephe yönü — <b id="cepheAd">Güney</b> <span id="cepheDer" style="font-family:var(--mono)">180°</span></label>
+      <div class="yonler" id="yonler"></div>
+      <input type="range" id="cephe" min="0" max="359" step="1" value="180" aria-label="Cephe yönü derece">
+      <button class="btn-ikinci" id="pusula">Pusulayla bul</button>
+      <div id="pusulaKutu" hidden>
+        <p class="pusula-oku"><span id="pusulaDer">—</span><span id="pusulaYon"></span></p>
+        <button class="btn-ana" id="pusulaAl">Bu yönü kullan</button>
+        <p class="ipucu">Telefonu düz tut, yüzünü pencereden dışarı çevir. Değer sabitlenince düğmeye bas.</p>
+      </div>
+      <p class="ipucu" id="pusulaNot" hidden></p>
+    </div>
+  </div>
+
+  <div class="kontrol">
+    <p class="adim">2 · İnce ayar — tarih, saat ve karşı bina</p>
+    <div class="satir">
+      <label>Hangi tarihte? — <b id="tarihAd">Bugün</b></label>
+      <p class="ipucu" style="margin:0 0 10px">Güneş mevsime göre çok değişir. Aynı evi kışın ve yazın ayrı ayrı bak.</p>
+      <div class="hizlilar" id="hizliTarih"></div>
+      <input type="range" id="gun" min="0" max="364" step="1" value="0" aria-label="Yılın günü">
+      <div class="ay-cetvel" aria-hidden="true">
+        <span>Oca</span><span>Şub</span><span>Mar</span><span>Nis</span><span>May</span><span>Haz</span><span>Tem</span><span>Ağu</span><span>Eyl</span><span>Eki</span><span>Kas</span><span>Ara</span>
+      </div>
+    </div>
+    <div class="satir">
+      <label for="saat">Saat — <b id="saatAd">12:00</b></label>
+      <div class="saat-sar">
+        <button class="oynat" id="oynat" aria-label="Günü oynat">▶</button>
+        <input type="range" id="saat" min="0" max="1439" step="5" value="720">
+      </div>
+    </div>
+    <div class="satir ikili">
+      <div>
+        <label>Kendi katın — <b id="katAd">3</b></label>
+        <input type="range" id="kat" min="0" max="20" step="1" value="3" aria-label="Kendi katınız">
+      </div>
+      <div>
+        <label>Karşı bina katı — <b id="karsiAd">5</b></label>
+        <input type="range" id="karsi" min="0" max="30" step="1" value="5" aria-label="Karşı bina kat sayısı">
+      </div>
+    </div>
+    <div class="satir">
+      <label>Karşı binaya mesafe — <b id="mesafeAd">14 m</b></label>
+      <input type="range" id="mesafe" min="3" max="80" step="1" value="14" aria-label="Karşı binaya mesafe metre">
+    </div>
+  </div>
+    </div>
+    <div class="sag">
+  <div class="sahne">
+    <div class="sahne-ust">
+      <div class="kutu">
+        <p class="kutu-baslik">Güneşin gün boyu yolu</p>
+        <canvas id="dial" width="600" height="600" aria-label="Pusula üzerinde güneşin gün boyunca izlediği yol"></canvas>
+      </div>
+      <div class="kutu">
+        <p class="kutu-baslik">Oda — ışık nereye düşüyor</p>
+        <canvas id="kesit" width="760" height="480" aria-label="Odanın yandan kesiti ve zeminde güneş lekesi"></canvas>
+      </div>
+    </div>
+    <div class="durum">
+      <span class="nokta" id="nokta"></span>
+      <span id="durumYazi">—</span>
+      <span class="durum-not" id="durumNot"></span>
+    </div>
+    <div class="okuma">
+      <div class="hucre"><div class="hucre-etiket">Saat</div><div class="hucre-deger" id="oSaat">—</div></div>
+      <div class="hucre"><div class="hucre-etiket">Güneş yönü</div><div class="hucre-deger" id="oAzimut">—</div></div>
+      <div class="hucre"><div class="hucre-etiket">Güneş yüksekliği</div><div class="hucre-deger" id="oYukseklik">—</div></div>
+      <div class="hucre"><div class="hucre-etiket">Odaya giriş</div><div class="hucre-deger" id="oDerinlik">—</div></div>
+    </div>
+    <div class="serit-sar">
+      <p class="kutu-baslik">Bu tarihte gün boyu</p>
+      <div class="serit" id="serit"></div>
+      <div class="serit-eksen"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+      <div class="efsane">
+        <span><i class="sw" style="background:var(--gunes)"></i> Doğrudan güneş</span>
+        <span><i class="sw" style="background:var(--engel)"></i> Karşı bina kesiyor</span>
+        <span><i class="sw" style="background:var(--dolayli)"></i> Gündüz, cephe arkada</span>
+        <span><i class="sw" style="background:var(--gece)"></i> Gece</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="paylas">
+    <button class="btn-ana" id="pdf">PDF rapor indir</button>
+    <button class="btn-ikinci" id="gorsel">Görsel olarak indir (sosyal medya)</button>
+    <button class="btn-ikinci" id="baglanti">Bağlantıyı kopyala</button>
+    <p class="ipucu" id="paylasNot">PDF'i e-postayla gönderebilir veya çıktı alabilirsin. Görsel WhatsApp ve Instagram için, bağlantıda ise tüm ayarların saklı.</p>
+  </div>
+
+  <div class="mevsim" id="mevsim"></div>
+    </div>
+  </div>
+
+  <div class="dipnot">
+    <p><b>Hesap neye dayanıyor:</b> Güneşin konumu, girilen enlem-boylam için astronomik olarak hesaplanıyor (saat dilimi UTC+3, Türkiye'de yaz saati uygulaması yok). Bir pencere, güneşin yönü cephe yönünün ±90° aralığındayken doğrudan güneş alır.</p>
+    <p><b>Kabul:</b> Karşı bina, cepheye paralel uzanan kesintisiz bir blok gibi ele alınıyor. Kat yüksekliği 3 m, pencere alt kenarı 90 cm, üst kenarı 220 cm varsayıldı. Yan binalar, ağaçlar ve arazi eğimi hesaba katılmıyor.</p>
+    <p>Girdiğiniz hiçbir bilgi sunucuya gönderilmez, tüm hesap tarayıcınızda yapılır.</p>
+    <p style="border-left:3px solid var(--engel);background:#FBEFF0;border-radius:0 11px 11px 0;padding:13px 15px;color:var(--metin)"><b>Bu bilgiler kesinlik içermez.</b> Sonuçlar bilgilendirme amaçlı tahminlerdir; balkon, saçak, ağaç, yan binalar ve arazi eğimi hesaba katılmaz. Garanti veya taahhüt niteliği taşımaz, alım-satım kararlarına tek başına esas alınamaz. Kesin sonuç için mülkü yerinde görmek gerekir. <a href="nasil-kullanilir.html" style="color:var(--yesil);font-weight:600">Ayrıntılı uyarı →</a></p>
+    <p><a href="nasil-kullanilir.html" style="color:var(--yesil);font-weight:600">Cephe rehberi ve sık sorulanlar →</a></p>
+    
+  </div>
+
+
+
+  <div class="altbilgi">
+    <p class="ab-ad">Armağan Kocabaş</p>
+    <p class="ab-rol">İstanbul Lüks Konut Uzmanı · RE/MAX Eksen</p>
+
+    <div class="ab-blok">
+      <p class="ab-baslik">İletişim</p>
+      <div class="ab-grid uc">
+      <a class="ab-kart" href="https://instagram.com/rmx.armagankocabas" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="#3B8574" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1.15" fill="#3B8574" stroke="none"/></svg><div><b>Instagram</b><em>@rmx.armagankocabas</em></div></a>
+      <a class="ab-kart" href="tel:+905079173358"><svg viewBox="0 0 24 24" fill="none" stroke="#3B8574" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M6.6 3.4h10.8c.9 0 1.6.7 1.6 1.6v14c0 .9-.7 1.6-1.6 1.6H6.6c-.9 0-1.6-.7-1.6-1.6V5c0-.9.7-1.6 1.6-1.6Z"/><path d="M10.4 17.5h3.2"/></svg><div><b>0507 917 33 58</b><em>Ara veya WhatsApp yaz</em></div></a>
+      <a class="ab-kart" href="https://armagankocabas.com.tr" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="#3B8574" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="12" r="8.9"/><path d="M3.1 12h17.8M12 3.1c2.4 2.6 3.6 5.6 3.6 8.9s-1.2 6.3-3.6 8.9c-2.4-2.6-3.6-5.6-3.6-8.9S9.6 5.7 12 3.1Z"/></svg><div><b>armagankocabas.com.tr</b><em>Kişisel sitem</em></div></a>
+      </div>
+    </div>
+
+    <div class="ab-blok">
+      <p class="ab-baslik">Diğer ücretsiz araçlarım</p>
+      <div class="ab-grid">
+      <a class="ab-kart" href="https://www.parseltur.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="#3B8574" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M3.2 6.6 9 4.2l6 2.4 5.8-2.4v13L15 19.8l-6-2.4-5.8 2.4Z"/><path d="M9 4.2v13.2M15 6.6v13.2"/></svg><div><b>ParselTur</b><em>Arsanı 3D drone videosuna çevir</em></div></a>
+      </div>
+    </div>
+
+    <div class="ab-blok">
+      <p class="ab-baslik">Kitaplarım</p>
+      <div class="ab-grid">
+      <a class="ab-kart" href="https://www.kitapyurdu.com/kitap/soguk-aramadan-sicak-satisa-fsbonun-gucu/727079.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="#3B8574" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M3.8 4.3h5.4c1.6 0 2.8.9 2.8 2.2v13.2c0-1.1-1.1-1.9-2.6-1.9H3.8Z"/><path d="M20.2 4.3h-5.4c-1.6 0-2.8.9-2.8 2.2v13.2c0-1.1 1.1-1.9 2.6-1.9h5.6Z"/></svg><div><b>Soğuk Aramadan Sıcak Satışa: FSBO'nun Gücü</b><em>Kitapyurdu</em></div></a>
+      <a class="ab-kart" href="https://www.kitapyurdu.com/kitap/yeni-danisman-el-kitabi/762882.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="#3B8574" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M3.8 4.3h5.4c1.6 0 2.8.9 2.8 2.2v13.2c0-1.1-1.1-1.9-2.6-1.9H3.8Z"/><path d="M20.2 4.3h-5.4c-1.6 0-2.8.9-2.8 2.2v13.2c0-1.1 1.1-1.9 2.6-1.9h5.6Z"/></svg><div><b>Yeni Danışman El Kitabı</b><em>Kitapyurdu</em></div></a>
+      </div>
+    </div>
+
+    <p class="ab-not">Bu araç ücretsizdir, isteyen herkes kullanabilir. Emlak danışmanı meslektaşlarım da müşterilerine gönül rahatlığıyla paylaşabilir.</p>
+  </div>
+</div>
+
+
+<div class="cta"><a id="ctaLink" href="https://wa.me/905079173358" target="_blank" rel="noopener">WhatsApp'tan Ücretsiz Destek İste</a></div>
+
+<script>
+var LOGO_URI = "data:image/png;base64,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";
+
+"use strict";
+/* ====== 1. GÜNEŞ KONUMU MOTORU =========================================
+   Girdi: tarih (UTC ms), enlem, boylam.  Çıktı: azimut (kuzeyden derece),
+   yükseklik (derece).  Aracın geri kalanı yalnızca bu üç sayıyı kullanır;
+   girdi ister elle ister haritadan gelsin bu blok değişmez.        */
+var RAD = Math.PI/180, GUN_MS = 864e5, J1970 = 2440588, J2000 = 2451545;
+var EGIM = RAD * 23.4397;
+
+function gunSayisi(ms){ return ms/GUN_MS - 0.5 + J1970 - J2000; }
+function sapma(l){ return Math.asin(Math.sin(EGIM)*Math.sin(l)); }
+function sagAcikilim(l){ return Math.atan2(Math.sin(l)*Math.cos(EGIM), Math.cos(l)); }
+function yildizZamani(d, lw){ return RAD*(280.16 + 360.9856235*d) - lw; }
+function ortalamaAnomali(d){ return RAD*(357.5291 + 0.98560028*d); }
+function ekliptikBoylam(M){
+  var C = RAD*(1.9148*Math.sin(M) + 0.02*Math.sin(2*M) + 0.0003*Math.sin(3*M));
+  return M + C + RAD*102.9372 + Math.PI;
+}
+function gunesKonumu(ms, enlem, boylam){
+  var lw = RAD * -boylam, phi = RAD * enlem, d = gunSayisi(ms);
+  var M = ortalamaAnomali(d), L = ekliptikBoylam(M);
+  var dec = sapma(L), ra = sagAcikilim(L);
+  var H = yildizZamani(d, lw) - ra;
+  var yuk = Math.asin(Math.sin(phi)*Math.sin(dec) + Math.cos(phi)*Math.cos(dec)*Math.cos(H));
+  var az  = Math.atan2(Math.sin(H), Math.cos(H)*Math.sin(phi) - Math.tan(dec)*Math.cos(phi));
+  return { yukseklik: yuk/RAD, azimut: (az/RAD + 180 + 360) % 360 };
+}
+/* Türkiye yerel saati -> UTC ms (sabit UTC+3) */
+function trAn(ay, gun, dakika){
+  return Date.UTC(2026, ay, gun, 0, 0, 0) + (dakika - 180)*60000;
+}
+
+/* ====== 2. CEPHE MODELİ ============================================== */
+var KAT_YUK = 3.0, PENCERE_ALT = 0.9, PENCERE_UST = 2.2, ODA_DERINLIK = 6.0;
+
+function analiz(ms, yer, cepheAz, kat, karsiKat, mesafe){
+  var g = gunesKonumu(ms, yer.enlem, yer.boylam);
+  var fark = ((g.azimut - cepheAz + 540) % 360) - 180;   // -180..180
+  var bakiyor = Math.abs(fark) < 90;
+  var geceMi = g.yukseklik <= 0;
+
+  // Karşı binanın kestiği yükseklik açısı
+  var pencereYuk = kat*KAT_YUK + PENCERE_ALT;
+  var karsiYuk = karsiKat*KAT_YUK;
+  var dh = karsiYuk - pencereYuk;
+  var engelAcisi = 0;
+  if(dh > 0 && bakiyor){
+    var yatay = mesafe / Math.max(Math.cos(fark*RAD), 0.001);
+    engelAcisi = Math.atan2(dh, yatay)/RAD;
+  }
+  var engelli = bakiyor && !geceMi && g.yukseklik < engelAcisi;
+  var dogrudan = bakiyor && !geceMi && !engelli;
+
+  // Işığın odaya giriş derinliği
+  var yakin = 0, uzak = 0;
+  if(dogrudan && g.yukseklik > 0.5){
+    var t = Math.tan(g.yukseklik*RAD), c = Math.cos(fark*RAD);
+    yakin = Math.min((PENCERE_ALT/t)*c, ODA_DERINLIK);
+    uzak  = Math.min((PENCERE_UST/t)*c, ODA_DERINLIK);
+  }
+  var durum = geceMi ? "gece" : dogrudan ? "dogrudan" : engelli ? "engelli" : "dolayli";
+  return { az:g.azimut, yuk:g.yukseklik, fark:fark, durum:durum,
+           engelAcisi:engelAcisi, yakin:yakin, uzak:uzak };
+}
+
+function gunBoyu(ay, gun, yer, cepheAz, kat, karsiKat, mesafe){
+  var dilim = [], dogrudanDk = 0, ilk = null, son = null;
+  for(var dk = 0; dk < 1440; dk += 10){
+    var a = analiz(trAn(ay, gun, dk), yer, cepheAz, kat, karsiKat, mesafe);
+    dilim.push(a.durum);
+    if(a.durum === "dogrudan"){
+      dogrudanDk += 10;
+      if(ilk === null) ilk = dk;
+      son = dk + 10;
+    }
+  }
+  return { dilim:dilim, saat:dogrudanDk/60, ilk:ilk, son:son };
+}
+
+/* ====== 3. VERİ ====================================================== */
+var ILCELER = [
+  ["Adalar",40.8760,29.0930],["Arnavutköy",41.1840,28.7400],["Ataşehir",40.9920,29.1270],
+  ["Avcılar",40.9800,28.7210],["Bağcılar",41.0390,28.8560],["Bahçelievler",41.0000,28.8600],
+  ["Bakırköy",40.9800,28.8720],["Başakşehir",41.0930,28.8020],["Bayrampaşa",41.0470,28.9120],
+  ["Beşiktaş",41.0430,29.0080],["Beykoz",41.1240,29.0930],["Beylikdüzü",41.0010,28.6410],
+  ["Beyoğlu",41.0330,28.9770],["Büyükçekmece",41.0210,28.5800],["Çatalca",41.1430,28.4610],
+  ["Çekmeköy",41.0400,29.1900],["Esenler",41.0430,28.8760],["Esenyurt",41.0290,28.6800],
+  ["Eyüpsultan",41.0480,28.9340],["Fatih",41.0190,28.9400],["Gaziosmanpaşa",41.0580,28.9130],
+  ["Güngören",41.0210,28.8710],["Kadıköy",40.9900,29.0300],["Kâğıthane",41.0850,28.9720],
+  ["Kartal",40.8880,29.1900],["Küçükçekmece",41.0000,28.7750],["Maltepe",40.9350,29.1560],
+  ["Pendik",40.8770,29.2340],["Sancaktepe",41.0000,29.2320],["Sarıyer",41.1670,29.0570],
+  ["Silivri",41.0740,28.2470],["Sultanbeyli",40.9670,29.2670],["Sultangazi",41.1060,28.8720],
+  ["Şile",41.1750,29.6130],["Şişli",41.0600,28.9870],["Tuzla",40.8160,29.3010],
+  ["Ümraniye",41.0160,29.1240],["Üsküdar",41.0225,29.0140],["Zeytinburnu",40.9940,28.9020]
+];
+var ILLER = [
+  ["Adana",37.0000,35.3213],["Adıyaman",37.7648,38.2786],["Afyonkarahisar",38.7638,30.5403],
+  ["Ağrı",39.7191,43.0503],["Aksaray",38.3687,34.0370],["Amasya",40.6499,35.8353],
+  ["Ankara",39.9334,32.8597],["Antalya",36.8969,30.7133],["Ardahan",41.1105,42.7022],
+  ["Artvin",41.1828,41.8183],["Aydın",37.8560,27.8416],["Balıkesir",39.6484,27.8826],
+  ["Bartın",41.6344,32.3375],["Batman",37.8812,41.1351],["Bayburt",40.2552,40.2249],
+  ["Bilecik",40.1506,29.9792],["Bingöl",38.8854,40.4966],["Bitlis",38.4006,42.1095],
+  ["Bolu",40.7350,31.6061],["Burdur",37.7203,30.2908],["Bursa",40.1885,29.0610],
+  ["Çanakkale",40.1553,26.4142],["Çankırı",40.6013,33.6134],["Çorum",40.5506,34.9556],
+  ["Denizli",37.7765,29.0864],["Diyarbakır",37.9144,40.2306],["Düzce",40.8438,31.1565],
+  ["Edirne",41.6771,26.5557],["Elazığ",38.6810,39.2264],["Erzincan",39.7500,39.5000],
+  ["Erzurum",39.9000,41.2700],["Eskişehir",39.7767,30.5206],["Gaziantep",37.0662,37.3833],
+  ["Giresun",40.9128,38.3895],["Gümüşhane",40.4386,39.5086],["Hakkâri",37.5744,43.7408],
+  ["Hatay",36.2025,36.1606],["Iğdır",39.9237,44.0450],["Isparta",37.7648,30.5566],
+  ["İstanbul",41.0082,28.9784],["İzmir",38.4237,27.1428],["Kahramanmaraş",37.5858,36.9371],
+  ["Karabük",41.2061,32.6204],["Karaman",37.1759,33.2287],["Kars",40.6167,43.1000],
+  ["Kastamonu",41.3887,33.7827],["Kayseri",38.7312,35.4787],["Kilis",36.7184,37.1212],
+  ["Kırıkkale",39.8468,33.5153],["Kırklareli",41.7333,27.2167],["Kırşehir",39.1425,34.1709],
+  ["Kocaeli",40.7654,29.9408],["Konya",37.8746,32.4932],["Kütahya",39.4242,29.9833],
+  ["Malatya",38.3552,38.3095],["Manisa",38.6191,27.4289],["Mardin",37.3212,40.7245],
+  ["Mersin",36.8121,34.6415],["Muğla",37.2153,28.3636],["Muş",38.7432,41.5064],
+  ["Nevşehir",38.6244,34.7239],["Niğde",37.9667,34.6833],["Ordu",40.9839,37.8764],
+  ["Osmaniye",37.0742,36.2461],["Rize",41.0201,40.5234],["Sakarya",40.7889,30.4060],
+  ["Samsun",41.2867,36.3300],["Siirt",37.9333,41.9500],["Sinop",42.0231,35.1531],
+  ["Sivas",39.7477,37.0179],["Şanlıurfa",37.1591,38.7969],["Şırnak",37.5164,42.4611],
+  ["Tekirdağ",40.9833,27.5167],["Tokat",40.3167,36.5500],["Trabzon",41.0027,39.7168],
+  ["Tunceli",39.1079,39.5401],["Uşak",38.6823,29.4082],["Van",38.4891,43.4089],
+  ["Yalova",40.6500,29.2667],["Yozgat",39.8181,34.8147],["Zonguldak",41.4564,31.7987]
+];
+var YERLER = [];
+ILCELER.forEach(function(p){ YERLER.push({ad:p[0], enlem:p[1], boylam:p[2], grup:"İstanbul ilçeleri"}); });
+ILLER.forEach(function(p){ YERLER.push({ad:p[0], enlem:p[1], boylam:p[2], grup:"81 il"}); });
+var YON8 = [["K",0],["KD",45],["D",90],["GD",135],["G",180],["GB",225],["B",270],["KB",315]];
+var YON_AD = {0:"Kuzey",45:"Kuzeydoğu",90:"Doğu",135:"Güneydoğu",180:"Güney",225:"Güneybatı",270:"Batı",315:"Kuzeybatı"};
+var AYLAR = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
+var AY_GUN = [31,28,31,30,31,30,31,31,30,31,30,31];
+function gunuCoz(n){
+  var i = 0; while(n >= AY_GUN[i]){ n -= AY_GUN[i]; i++; }
+  return {ay:i, gun:n+1};
+}
+function gunIndex(ay, gun){ var t = 0; for(var i=0;i<ay;i++) t += AY_GUN[i]; return t + gun - 1; }
+function bugunIndex(){
+  var b = new Date();
+  return gunIndex(b.getMonth(), Math.min(b.getDate(), AY_GUN[b.getMonth()]));
+}
+var HIZLI_TARIH = [
+  {ad:"Bugün",      alt:"şu anki mevsim", i:bugunIndex()},
+  {ad:"21 Aralık",  alt:"en kısa gün",    i:gunIndex(11,21)},
+  {ad:"21 Mart",    alt:"gece = gündüz",  i:gunIndex(2,21)},
+  {ad:"21 Haziran", alt:"en uzun gün",    i:gunIndex(5,21)}
+];
+
+/* ====== 4. DURUM ===================================================== */
+function yerBul(ad){
+  for(var i=0;i<YERLER.length;i++) if(YERLER[i].ad === ad) return YERLER[i];
+  return YERLER[0];
+}
+var D = { yer:yerBul("Üsküdar"), cephe:180, gunNo:bugunIndex(), dakika:720,
+          kat:3, karsi:5, mesafe:14 };
+var oynuyor = false, zamanlayici = null;
+
+/* ====== 5. ÇİZİM ===================================================== */
+
+var CANVAS_FONT = "Inter, Helvetica, Arial, sans-serif";
+var RENK = { gunes:"#E8A100", golge:"#6E9DC9", engel:"#C0666E", gece:"#E6EAEC",
+             duvar:"#C8D1D5", kagit:"#2C3438", sonuk:"#6B7A80", oda:"#FFFFFF",
+             yesil:"#3B8574", disari:"#EEF4F8", bina:"#D3DAE0", binaCizgi:"#B4BEC6" };
+
+function olcek(cv){
+  var dpr = window.devicePixelRatio || 1;
+  var g = cv.getBoundingClientRect().width || cv.width;
+  var oran = cv.height / cv.width;
+  cv.width = Math.round(g*dpr); cv.height = Math.round(g*oran*dpr);
+  cv.style.height = (g*oran) + "px";
+  var x = cv.getContext("2d");
+  x.setTransform(dpr,0,0,dpr,0,0);
+  return {x:x, w:g, h:g*oran};
+}
+
+function cizDial(a){
+  var o = olcek(document.getElementById("dial")), x = o.x, w = o.w, h = o.h;
+  x.clearRect(0,0,w,h);
+  dialGovde(x, w/2, h/2, Math.min(w,h)/2 - 26, a, 12);
+}
+
+/* Pusula diyagramının gövdesi — hem ekranda hem PDF'te kullanılır */
+function dialGovde(x, cx, cy, R, a, yaziBoy){
+
+  // gökyüzü kubbesi — merkez tepe noktası, kenar ufuk
+  var kub = x.createRadialGradient(cx, cy - R*0.18, R*0.05, cx, cy, R);
+  kub.addColorStop(0,    "rgba(255,255,255,1)");
+  kub.addColorStop(0.55, "rgba(228,238,244,.40)");
+  kub.addColorStop(1,    "rgba(150,180,205,.20)");
+  x.beginPath(); x.arc(cx,cy,R,0,7); x.fillStyle = kub; x.fill();
+
+  // cephenin gördüğü ±90° dilim
+  var b0 = (D.cephe - 90 - 90)*RAD, b1 = (D.cephe + 90 - 90)*RAD;
+  x.beginPath(); x.moveTo(cx,cy); x.arc(cx,cy,R,b0,b1); x.closePath();
+  x.fillStyle = "rgba(232,161,0,.10)"; x.fill();
+
+  // halkalar (yükseklik çemberleri)
+  [30,60].forEach(function(y){
+    x.beginPath(); x.arc(cx,cy,R*(1-y/90),0,7); 
+    x.strokeStyle = "rgba(120,150,170,.38)"; x.lineWidth = 1; x.stroke();
+  });
+  x.setLineDash([]);
+  x.beginPath(); x.arc(cx,cy,R,0,7); x.strokeStyle = "rgba(100,135,160,.55)"; x.lineWidth = 1.8; x.stroke();
+
+  // yön harfleri
+  x.font = "700 " + yaziBoy + "px "+CANVAS_FONT;
+  x.textAlign="center"; x.textBaseline="middle"; x.fillStyle = RENK.sonuk;
+  YON8.forEach(function(p){
+    var ang = (p[1]-90)*RAD;
+    x.fillText(p[0], cx + Math.cos(ang)*(R+yaziBoy*1.25), cy + Math.sin(ang)*(R+yaziBoy*1.25));
+  });
+
+  // güneşin gün boyu yolu
+  var c = gunuCoz(D.gunNo);
+  x.beginPath(); var basladi = false;
+  for(var dk=0; dk<=1440; dk+=8){
+    var g = gunesKonumu(trAn(c.ay,c.gun,dk), D.yer.enlem, D.yer.boylam);
+    if(g.yukseklik <= 0){ basladi = false; continue; }
+    var r = R*(1 - g.yukseklik/90), ang = (g.azimut-90)*RAD;
+    var px = cx + Math.cos(ang)*r, py = cy + Math.sin(ang)*r;
+    if(!basladi){ x.moveTo(px,py); basladi = true; } else x.lineTo(px,py);
+  }
+  x.strokeStyle = "rgba(232,161,0,.20)"; x.lineWidth = R*0.05; x.lineCap = "round"; x.stroke();
+  x.strokeStyle = "rgba(232,161,0,.85)"; x.lineWidth = 2; x.stroke();
+  x.lineCap = "butt";
+
+  // cephe oku
+  var ca = (D.cephe-90)*RAD;
+  x.beginPath(); x.moveTo(cx,cy);
+  x.lineTo(cx + Math.cos(ca)*R, cy + Math.sin(ca)*R);
+  x.strokeStyle = RENK.yesil; x.lineWidth = 2.5; x.stroke();
+  x.beginPath(); x.arc(cx + Math.cos(ca)*R, cy + Math.sin(ca)*R, R*0.019, 0, 7);
+  x.fillStyle = RENK.yesil; x.fill();
+
+  // anlık güneş
+  if(a.yuk > 0){
+    var r2 = R*(1 - a.yuk/90), ang2 = (a.az-90)*RAD;
+    var sx = cx + Math.cos(ang2)*r2, sy = cy + Math.sin(ang2)*r2;
+    var renk = a.durum === "dogrudan" ? RENK.gunes : a.durum === "engelli" ? RENK.engel : RENK.golge;
+    x.beginPath(); x.arc(sx,sy,R*0.048,0,7);
+    x.fillStyle = "rgba(232,161,0,.20)"; x.fill();
+    x.beginPath(); x.arc(sx,sy,R*0.026,0,7); x.fillStyle = renk; x.fill();
+  }
+  x.beginPath(); x.arc(cx,cy,R*0.012,0,7); x.fillStyle = RENK.duvar; x.fill();
+  x.textBaseline = "alphabetic";
+}
+
+/* İzometrik oda. Döndürme yok — sabit açıdan üç boyutlu görünüm. */
+var ODA_GENIS = 4.0, ODA_YUKSEK = 2.7, PY0 = 1.0, PY1 = 3.0;
+
+var BX0 = -3.3, BX1 = -2.2, BYA = -0.5, GT_MAX = 4.6;
+
+function izoKur(w, h){
+  var BYB = ODA_GENIS + 0.5;
+  // içeriğin gerçek sınırları — karşı bina ve etiket payı dahil
+  var sxMin = (BX0 - BYB) * 0.866, sxMax = ODA_DERINLIK * 0.866;
+  var syMin = (BX0 + BYA) * 0.5 - GT_MAX * 0.92;
+  var syMax = (ODA_DERINLIK + ODA_GENIS) * 0.5;
+  var s = Math.min(w / (sxMax - sxMin + 0.8), h / (syMax - syMin + 1.9));
+  return { s:s,
+           ox: w/2 - ((sxMin + sxMax)/2) * s,
+           oy: h/2 - ((syMin + syMax)/2) * s };
+}
+
+/* Karşı binayı hacimli ve pencereli çiz — gri bir kütle gibi durmasın.
+   Yükseklik sıkıştırılmış gösterilir; gerçek kat sayısı etikette yazar. */
+function karsiBinaCiz(x, K, pol, etiketli){
+  var yuk = (D.karsi - D.kat) * KAT_YUK;
+  if(yuk <= 0) return;
+  var BYB = ODA_GENIS + 0.5;
+  var gt = Math.min(GT_MAX, 1.2 + yuk * 0.28);
+
+  pol([[BX0,BYB,0],[BX1,BYB,0],[BX1,BYB,gt],[BX0,BYB,gt]], "#A3AFB9");
+  pol([[BX0,BYA,gt],[BX1,BYA,gt],[BX1,BYB,gt],[BX0,BYB,gt]], "#CED7DE");
+  pol([[BX1,BYA,0],[BX1,BYB,0],[BX1,BYB,gt],[BX1,BYA,gt]], "#BAC5CE");
+
+  var sira = Math.min(D.karsi, 6), sut = 4;
+  var ay = (BYB - BYA) / (sut + 0.6), az = gt / (sira + 0.5);
+  for(var r=0; r<sira; r++){
+    var zz = 0.35 + r*az;
+    if(zz + az*0.55 > gt) break;
+    for(var c=0; c<sut; c++){
+      var yy = BYA + 0.35 + c*ay;
+      pol([[BX1,yy,zz],[BX1,yy+ay*0.6,zz],[BX1,yy+ay*0.6,zz+az*0.55],[BX1,yy,zz+az*0.55]], "#6C8496");
+    }
+  }
+  if(etiketli){
+    var tepe = izoN(K, BX0, BYA, gt);          // en üst ekran noktası
+    var sol  = izoN(K, BX0, BYB, gt);
+    var sag  = izoN(K, BX1, BYA, gt);
+    var yb = Math.max(11, K.s * 0.55);
+    x.fillStyle = "#68787E";
+    x.font = "700 " + Math.round(yb) + "px " + CANVAS_FONT;
+    x.textAlign = "center";
+    x.fillText("KARŞI BİNA · " + D.karsi + " kat · " + D.mesafe + " m",
+               (sol.x + sag.x)/2, tepe.y - yb);
+    x.textAlign = "left";
+  }
+}
+
+function izoN(K, x, y, z){
+  return { x: K.ox + (x - y) * 0.866 * K.s,
+           y: K.oy + (x + y) * 0.5 * K.s - z * 0.92 * K.s };
+}
+function izoPoly(x, K, pts, dolgu, cizgi){
+  x.beginPath();
+  for(var i=0;i<pts.length;i++){
+    var q = izoN(K, pts[i][0], pts[i][1], pts[i][2]);
+    if(i) x.lineTo(q.x, q.y); else x.moveTo(q.x, q.y);
+  }
+  x.closePath();
+  if(dolgu){ x.fillStyle = dolgu; x.fill(); }
+  if(cizgi){ x.strokeStyle = cizgi; x.lineWidth = 1.5; x.stroke(); }
+}
+function kis(v){ return Math.max(0, Math.min(ODA_GENIS, v)); }
+
+function cizKesit(a){
+  var o = olcek(document.getElementById("kesit")), x = o.x, w = o.w, h = o.h;
+  x.clearRect(0,0,w,h);
+  var K = izoKur(w, h);
+  var tf = Math.tan(a.fark * RAD);
+
+  // karşı bina — pencere duvarının ardında
+  karsiBinaCiz(x, K, function(p,f){ izoPoly(x, K, p, f); }, true);
+
+  // oda kabuğu
+  izoPoly(x, K, [[0,0,0],[ODA_DERINLIK,0,0],[ODA_DERINLIK,ODA_GENIS,0],[0,ODA_GENIS,0]], "#F7F9F9", "#B0BEC5");
+  izoPoly(x, K, [[0,0,0],[0,ODA_GENIS,0],[0,ODA_GENIS,ODA_YUKSEK],[0,0,ODA_YUKSEK]], "#E0E8E8", "#B0BEC5");
+  izoPoly(x, K, [[0,0,0],[ODA_DERINLIK,0,0],[ODA_DERINLIK,0,ODA_YUKSEK],[0,0,ODA_YUKSEK]], "#EEF3F3", "#B0BEC5");
+
+  // pencere
+  var gokMavi = a.durum === "gece" ? "#9FB0BC" : "#CBE0EA";
+  izoPoly(x, K, [[0,PY0,PENCERE_ALT],[0,PY1,PENCERE_ALT],[0,PY1,PENCERE_UST],[0,PY0,PENCERE_UST]],
+          gokMavi, "#96AFBE");
+
+  // ışık huzmesi ve zemindeki leke
+  if(a.durum === "dogrudan" && a.uzak > a.yakin){
+    izoPoly(x, K, [[0,kis(PY0),PENCERE_UST],[0,kis(PY1),PENCERE_UST],
+                   [a.uzak,kis(PY1+a.uzak*tf),0],[a.uzak,kis(PY0+a.uzak*tf),0]],
+            "rgba(232,161,0,.24)");
+    izoPoly(x, K, [[a.yakin,kis(PY0+a.yakin*tf),0],[a.yakin,kis(PY1+a.yakin*tf),0],
+                   [a.uzak,kis(PY1+a.uzak*tf),0],[a.uzak,kis(PY0+a.uzak*tf),0]],
+            "rgba(232,161,0,.94)", "#C88700");
+
+    var etk = izoN(K, a.uzak, kis(PY0 + a.uzak*tf), 0);
+    x.fillStyle = "#C88700";
+    x.font = "700 13px " + CANVAS_FONT;
+    x.textAlign = "left";
+    x.fillText(a.uzak.toFixed(1).replace(".",",") + " m içeri", etk.x + 8, etk.y + 18);
+  } else {
+    x.fillStyle = RENK.sonuk;
+    x.font = "500 13px " + CANVAS_FONT;
+    x.textAlign = "center";
+    var mesaj = a.durum === "gece" ? "Güneş ufkun altında"
+              : a.durum === "engelli" ? "Karşı bina güneşi kesiyor"
+              : "Güneş cephenin arkasında — dolaylı gündüz ışığı";
+    x.fillText(mesaj, w/2, h - 12);
+  }
+}
+
+/* ====== 6. ARAYÜZ ==================================================== */
+function el(id){ return document.getElementById(id); }
+function ss(dk){ var s = Math.floor(dk/60), d = dk%60;
+  return (s<10?"0":"")+s+":"+(d<10?"0":"")+d; }
+
+function yonAdi(der){
+  var yakin = Math.round(der/45)*45 % 360;
+  return Math.abs(((der - yakin + 540)%360)-180) < 6 ? YON_AD[yakin] : YON_AD[yakin] + "'ye yakın";
+}
+
+function cizAnlik(){
+  var c = gunuCoz(D.gunNo);
+  var a = analiz(trAn(c.ay, c.gun, D.dakika), D.yer, D.cephe, D.kat, D.karsi, D.mesafe);
+
+  cizDial(a); cizKesit(a);
+
+  el("oSaat").textContent = ss(D.dakika);
+  el("saatAd").textContent = ss(D.dakika);
+  el("oAzimut").textContent = a.yuk > 0 ? Math.round(a.az)+"°" : "—";
+  el("oYukseklik").textContent = a.yuk > 0 ? a.yuk.toFixed(1).replace(".",",")+"°" : "—";
+  el("oDerinlik").textContent = a.durum === "dogrudan" ? a.uzak.toFixed(1).replace(".",",")+" m" : "0 m";
+
+  var renk = {dogrudan:RENK.gunes, engelli:RENK.engel, dolayli:RENK.golge, gece:"#AEBAC0"}[a.durum];
+  var yazi = {dogrudan:"Doğrudan güneş alıyor", engelli:"Karşı bina güneşi kesiyor",
+              dolayli:"Doğrudan güneş yok — dolaylı ışık", gece:"Gece"}[a.durum];
+  el("nokta").style.background = renk;
+  el("durumYazi").textContent = yazi;
+  el("durumNot").textContent = a.durum === "engelli"
+    ? "Engel açısı "+a.engelAcisi.toFixed(0)+"° · güneş "+a.yuk.toFixed(0)+"°"
+    : a.durum === "dolayli" ? "Cepheden "+Math.abs(Math.round(a.fark))+"° sapma" : "";
+
+}
+
+/* Şerit ve mevsim kutuları 4x144 güneş hesabı yapar; saat oynarken
+   bunları her karede yeniden hesaplamaya gerek yok. */
+function cizAgir(){
+  var c = gunuCoz(D.gunNo);
+  // gün şeridi
+  var g = gunBoyu(c.ay, c.gun, D.yer, D.cephe, D.kat, D.karsi, D.mesafe);
+  var s = el("serit"); s.innerHTML = "";
+  g.dilim.forEach(function(d){
+    var i = document.createElement("i");
+    i.style.background = {dogrudan:RENK.gunes, engelli:RENK.engel, dolayli:RENK.golge, gece:RENK.gece}[d];
+    s.appendChild(i);
+  });
+
+  el("konumAd").textContent = D.yer.ad;
+  el("tarihAd").textContent = (D.gunNo === bugunIndex() ? "Bugün · " : "") + c.gun + " " + AYLAR[c.ay];
+  el("cepheAd").textContent = yonAdi(D.cephe);
+  el("cepheDer").textContent = D.cephe + "°";
+  el("katAd").textContent = D.kat;
+  el("karsiAd").textContent = D.karsi;
+  el("mesafeAd").textContent = D.mesafe + " m";
+
+  document.querySelectorAll("#yonler button").forEach(function(b){
+    b.setAttribute("aria-pressed", (+b.dataset.der === D.cephe) ? "true":"false");
+  });
+  document.querySelectorAll("#hizliTarih button").forEach(function(b){
+    b.setAttribute("aria-pressed", (+b.dataset.i === D.gunNo) ? "true":"false");
+  });
+
+  mevsimCiz();
+  if(typeof ctaGuncelle === "function") ctaGuncelle();
+}
+
+function ciz(){ cizAnlik(); cizAgir(); }
+
+function mevsimCiz(){
+  var kutu = el("mevsim"); kutu.innerHTML = "";
+  [[11,21,"21 Aralık"],[2,21,"21 Mart"],[5,21,"21 Haziran"]].forEach(function(t){
+    var g = gunBoyu(t[0], t[1], D.yer, D.cephe, D.kat, D.karsi, D.mesafe);
+    var d = document.createElement("div"); d.className = "mev";
+    var not = g.saat === 0 ? "Bu tarihte hiç doğrudan güneş yok."
+      : "Yaklaşık " + ss(g.ilk) + " – " + ss(g.son) + " arası.";
+    d.innerHTML = '<div class="mev-ad">'+t[2]+'</div>'+
+      '<div class="mev-saat">'+g.saat.toFixed(1).replace(".",",")+' <span style="font-size:13px;color:var(--sonuk)">saat</span></div>'+
+      '<div class="mev-bar"><i style="width:'+Math.min(100,g.saat/14*100)+'%"></i></div>'+
+      '<div class="mev-not">'+not+'</div>';
+    kutu.appendChild(d);
+  });
+}
+
+/* kurulum */
+(function kur(){
+  var ml = el("markaLogo"); if(ml) ml.src = LOGO_URI;
+  var baglantidan = baglantiOku();
+  var k = el("konum"), gruplar = {};
+  YERLER.forEach(function(y,i){
+    if(!gruplar[y.grup]){
+      var g = document.createElement("optgroup"); g.label = y.grup;
+      gruplar[y.grup] = g; k.appendChild(g);
+    }
+    var o = document.createElement("option"); o.value = i; o.textContent = y.ad;
+    gruplar[y.grup].appendChild(o);
+  });
+  var ozel = document.createElement("option");
+  ozel.value = "ozel"; ozel.textContent = "Kendi koordinatım"; ozel.hidden = true;
+  k.appendChild(ozel);
+  k.value = baglantidan ? "ozel" : YERLER.indexOf(D.yer);
+
+  k.addEventListener("change", function(){
+    if(k.value === "ozel") return;
+    D.yer = YERLER[+k.value];
+    el("enlem").value = D.yer.enlem.toFixed(4);
+    el("boylam").value = D.yer.boylam.toFixed(4);
+    el("gpsNot").textContent = "Listede yoksa konumunu kullan ya da koordinatı elle gir — Türkiye'nin her noktası çalışır.";
+    ciz();
+  });
+
+  function koordOku(){
+    var en = parseFloat(el("enlem").value), bo = parseFloat(el("boylam").value);
+    if(isNaN(en) || isNaN(bo)) return;
+    en = Math.max(-89.9, Math.min(89.9, en));
+    bo = Math.max(-180, Math.min(180, bo));
+    D.yer = {ad:"Kendi koordinatım", enlem:en, boylam:bo};
+    el("konum").value = "ozel";
+    ciz();
+  }
+  el("enlem").addEventListener("change", koordOku);
+  el("boylam").addEventListener("change", koordOku);
+
+  var gpsBtn = el("gps");
+  if(!navigator.geolocation){
+    gpsBtn.disabled = true;
+    gpsBtn.textContent = "Konum bu tarayıcıda kapalı";
+  } else {
+    gpsBtn.addEventListener("click", function(){
+      gpsBtn.disabled = true; gpsBtn.textContent = "Konum alınıyor…";
+      navigator.geolocation.getCurrentPosition(function(p){
+        D.yer = {ad:"Bulunduğun nokta", enlem:p.coords.latitude, boylam:p.coords.longitude};
+        el("enlem").value = D.yer.enlem.toFixed(4);
+        el("boylam").value = D.yer.boylam.toFixed(4);
+        el("konum").value = "ozel";
+        gpsBtn.disabled = false; gpsBtn.textContent = "Konumu yenile";
+        el("gpsNot").textContent = "Konumun alındı. Değiştirmek için listeden seç ya da koordinatı elle yaz.";
+        ciz();
+      }, function(){
+        gpsBtn.disabled = false; gpsBtn.textContent = "Konumumu kullan";
+        el("gpsNot").textContent = "Konuma erişilemedi. Listeden en yakın ilçeyi seç ya da koordinatı elle gir — köy ile il merkezi arasındaki fark sonucu neredeyse hiç değiştirmez.";
+      }, {timeout:10000, enableHighAccuracy:false});
+    });
+  }
+
+  var yn = el("yonler");
+  YON8.forEach(function(p){
+    var b = document.createElement("button");
+    b.className = "yon"; b.textContent = p[0]; b.dataset.der = p[1];
+    b.setAttribute("aria-pressed","false");
+    b.addEventListener("click", function(){ D.cephe = p[1]; el("cephe").value = p[1]; ciz(); });
+    yn.appendChild(b);
+  });
+
+  var ht = el("hizliTarih");
+  HIZLI_TARIH.forEach(function(t){
+    var b = document.createElement("button");
+    b.className = "hizli"; b.dataset.i = t.i;
+    b.innerHTML = t.ad + "<small>" + t.alt + "</small>";
+    b.setAttribute("aria-pressed","false");
+    b.addEventListener("click", function(){ D.gunNo = t.i; el("gun").value = t.i; ciz(); });
+    ht.appendChild(b);
+  });
+
+  if(baglantidan){
+    el("cephe").value = D.cephe; el("gun").value = D.gunNo; el("saat").value = D.dakika;
+    el("kat").value = D.kat; el("karsi").value = D.karsi; el("mesafe").value = D.mesafe;
+    el("enlem").value = D.yer.enlem.toFixed(4); el("boylam").value = D.yer.boylam.toFixed(4);
+  }
+  el("cephe").addEventListener("input", function(e){ D.cephe = +e.target.value; ciz(); });
+  el("gun").addEventListener("input", function(e){ D.gunNo = +e.target.value; ciz(); });
+  el("saat").addEventListener("input", function(e){ D.dakika = +e.target.value; dur(); cizAnlik(); });
+  el("kat").addEventListener("input", function(e){ D.kat = +e.target.value; ciz(); });
+  el("karsi").addEventListener("input", function(e){ D.karsi = +e.target.value; ciz(); });
+  el("mesafe").addEventListener("input", function(e){ D.mesafe = +e.target.value; ciz(); });
+
+  el("oynat").addEventListener("click", function(){ oynuyor ? dur() : basla(); });
+  var resizeTimer;
+  window.addEventListener("resize", function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(ciz, 150);
+  });
+  ciz();
+})();
+
+
+/* ====== 7. BAĞLANTI · GÖRSEL · PUSULA ================================ */
+/* roundRect eski Safari/Chrome'da yok — yedeğini tanımla */
+if(!CanvasRenderingContext2D.prototype.roundRect){
+  CanvasRenderingContext2D.prototype.roundRect = function(x,y,w,h,r){
+    if(typeof r === "number"){ r = [r,r,r,r]; }
+    this.beginPath();
+    this.moveTo(x+r[0], y);
+    this.lineTo(x+w-r[1], y); this.quadraticCurveTo(x+w, y, x+w, y+r[1]);
+    this.lineTo(x+w, y+h-r[2]); this.quadraticCurveTo(x+w, y+h, x+w-r[2], y+h);
+    this.lineTo(x+r[3], y+h); this.quadraticCurveTo(x, y+h, x, y+h-r[3]);
+    this.lineTo(x, y+r[0]); this.quadraticCurveTo(x, y, x+r[0], y);
+    this.closePath();
+    return this;
+  };
+}
+
+
+/* --- 7a. Ayarları adres satırında taşı --- */
+function baglantiKur(){
+  var p = new URLSearchParams();
+  p.set("en", D.yer.enlem.toFixed(4));
+  p.set("bo", D.yer.boylam.toFixed(4));
+  p.set("ad", D.yer.ad);
+  p.set("c", D.cephe); p.set("g", D.gunNo); p.set("s", D.dakika);
+  p.set("kt", D.kat); p.set("ks", D.karsi); p.set("m", D.mesafe);
+  return location.origin + location.pathname + "?" + p.toString();
+}
+function baglantiOku(){
+  var p = new URLSearchParams(location.search);
+  if(!p.has("en") || !p.has("bo")) return false;
+  var en = parseFloat(p.get("en")), bo = parseFloat(p.get("bo"));
+  if(isNaN(en) || isNaN(bo)) return false;
+  D.yer = { ad: p.get("ad") || "Paylaşılan konum", enlem:en, boylam:bo };
+  function say(anahtar, alt, enAz, enCok){
+    var v = parseInt(p.get(anahtar), 10);
+    return (isNaN(v) || v < enAz || v > enCok) ? alt : v;
+  }
+  D.cephe  = say("c",  D.cephe,  0, 359);
+  D.gunNo  = say("g",  D.gunNo,  0, 364);
+  D.dakika = say("s",  D.dakika, 0, 1439);
+  D.kat    = say("kt", D.kat,    0, 20);
+  D.karsi  = say("ks", D.karsi,  0, 30);
+  D.mesafe = say("m",  D.mesafe, 3, 80);
+  return true;
+}
+
+
+/* Logoyu önden yükle; yoksa görsel logosuz üretilir */
+var LOGO = new Image(), logoHazir = false;
+LOGO.onload  = function(){ logoHazir = true; };
+LOGO.onerror = function(){ logoHazir = false; };
+LOGO.src = LOGO_URI;
+
+
+
+/* JS'in toUpperCase'i Türkçe bilmez: i -> I yapar. Doğrusu i -> İ. */
+function buyuk(t){
+  return t.replace(/i/g,"İ").replace(/ı/g,"I").replace(/ğ/g,"Ğ")
+          .replace(/ü/g,"Ü").replace(/ş/g,"Ş").replace(/ö/g,"Ö")
+          .replace(/ç/g,"Ç").toUpperCase();
+}
+/* Dosya adı için Türkçe harfleri sadeleştir */
+function dosyaAdi(uzanti){
+  var c = gunuCoz(D.gunNo);
+  return "Gunes-Alir-mi-" + slug(D.yer.ad) + "-" + slug(yonAdi(D.cephe)) +
+         "-" + c.gun + "-" + slug(AYLAR[c.ay]) + "." + uzanti;
+}
+function slug(t){
+  var harita = {"ı":"i","İ":"i","ğ":"g","Ğ":"g","ü":"u","Ü":"u",
+                "ş":"s","Ş":"s","ö":"o","Ö":"o","ç":"c","Ç":"c"};
+  return t.replace(/[ıİğĞüÜşŞöÖçÇ]/g, function(k){ return harita[k]; })
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g,"-")
+          .replace(/^-+|-+$/g,"");
+}
+
+
+/* QR matrisi gömülü — ayrı dosyaya bağımlı değil, her zaman çizilir.
+   İçerik: https://wa.me/905079173358 */
+var QR_N = 25;
+var QR_SATIR = "fe6a3f8,8229a08,bab9ae8,bac5ae8,ba922e8,8287208,feaabf8,008b000,be6dbe0,3d0e110,abb1bd8,8c83708,5bfcbb8,80aa150,96c9dd8,a82a988,9694fa0,00fb8c0,fe46ab8,82c38c0,ba85fa0,bada6f8,bae4068,823bdc8,fe847f8".split(",");
+
+function qrCiz(x, px, py, boy){
+  var sessiz = 2, toplam = QR_N + sessiz*2, m = boy / toplam;
+  x.fillStyle = "#FFFFFF";
+  x.fillRect(px, py, boy, boy);
+  x.fillStyle = "#2C3438";
+  for(var r=0; r<QR_N; r++){
+    var bits = parseInt(QR_SATIR[r], 16).toString(2);
+    while(bits.length < QR_SATIR[r].length*4) bits = "0" + bits;
+    for(var c=0; c<QR_N; c++){
+      if(bits.charAt(c) === "1"){
+        x.fillRect(px + (sessiz+c)*m, py + (sessiz+r)*m, Math.ceil(m), Math.ceil(m));
+      }
+    }
+  }
+}
+
+/* --- 7b. Paylaşılabilir görsel --- */
+function gorselUret(){
+  var G = 1080, Y = 1350;
+  var cv = document.createElement("canvas");
+  cv.width = G; cv.height = Y;
+  var x = cv.getContext("2d");
+  var AF = "Inter, Helvetica, Arial, sans-serif";
+  var KN = 64;                                  // kenar boşluğu
+  x.fillStyle = "#FFFFFF"; x.fillRect(0,0,G,Y);
+  x.textAlign = "left";
+
+  // ---- yeşil bant ----
+  x.fillStyle = "#3B8574"; x.fillRect(0,0,G,170);
+  if(logoHazir){ try { x.drawImage(LOGO, G-KN-84, 43, 84, 84); } catch(e){} }
+  x.fillStyle = "#FFFFFF"; x.font = "800 50px " + AF;
+  x.fillText("Güneş Alır mı?", KN, 82);
+  x.fillStyle = "rgba(255,255,255,.85)"; x.font = "500 22px " + AF;
+  x.fillText("EVİNİZE GÜNEŞ HANGİ SAATTE, NE KADAR GİRİYOR", KN, 124);
+
+  var c = gunuCoz(D.gunNo);
+  var g = gunBoyu(c.ay, c.gun, D.yer, D.cephe, D.kat, D.karsi, D.mesafe);
+  var an = analiz(trAn(c.ay, c.gun, D.dakika), D.yer, D.cephe, D.kat, D.karsi, D.mesafe);
+
+  function ustyazi(t, y){
+    x.fillStyle = "#68787E"; x.font = "600 22px " + AF;
+    x.fillText(buyuk(t), KN, y);
+  }
+
+  // ---- konum ve cephe ----
+  ustyazi("Konum ve cephe", 224);
+  x.fillStyle = "#2C3438"; x.font = "800 44px " + AF;
+  x.fillText(D.yer.ad + " · " + yonAdi(D.cephe), KN, 278);
+  x.fillStyle = "#68787E"; x.font = "500 26px " + AF;
+  x.fillText(D.cephe + "° · " + D.kat + ". kat · karşı bina " + D.karsi + " kat, " + D.mesafe + " m", KN, 318);
+
+  // ---- büyük rakam ----
+  x.fillStyle = "#F4F7F7";
+  x.beginPath(); x.roundRect(KN, 330, G-2*KN, 178, 22); x.fill();
+  x.fillStyle = "#68787E"; x.font = "600 22px " + AF;
+  x.fillText(c.gun + " " + buyuk(AYLAR[c.ay]) + " — DOĞRUDAN GÜNEŞ", KN+34, 382);
+  x.fillStyle = "#E8A100"; x.font = "800 78px " + AF;
+  x.fillText(g.saat.toFixed(1).replace(".",",") + " saat", KN+34, 456);
+  x.fillStyle = "#68787E"; x.font = "500 24px " + AF;
+  x.fillText(g.ilk !== null ? "Yaklaşık " + ss(g.ilk) + " – " + ss(g.son) + " arası"
+                            : "Bu tarihte doğrudan güneş girmiyor", KN+34, 494);
+
+  // ---- oda ----
+  ustyazi("Oda — ışık nereye düşüyor", 566);
+  gorseleOda(x, an, (G-760)/2, 574, 760, 282);
+
+  // ---- gün şeridi ----
+  ustyazi("Gün boyu", 912);
+  var sw = G-2*KN, sy = 924, sh = 54;
+  var renkler = {dogrudan:"#E8A100", engelli:"#C0666E", dolayli:"#6E9DC9", gece:"#E6EAEC"};
+  var dw = sw / g.dilim.length;
+  for(var i=0;i<g.dilim.length;i++){
+    x.fillStyle = renkler[g.dilim[i]];
+    x.fillRect(KN + i*dw, sy, Math.ceil(dw)+0.5, sh);
+  }
+  x.fillStyle = "#68787E"; x.font = "500 21px " + AF;
+  var et = ["00","06","12","18","24"];
+  for(var j=0;j<5;j++){
+    x.textAlign = j===0 ? "left" : j===4 ? "right" : "center";
+    x.fillText(et[j], KN + sw*(j/4), sy + sh + 26);
+  }
+  x.textAlign = "left";
+
+  // ---- yıl boyunca ----
+  ustyazi("Yıl boyunca", 1054);
+  var kutu = [[11,21,"21 Aralık"],[2,21,"21 Mart"],[5,21,"21 Haziran"]];
+  var kw = sw/3;
+  for(var k=0;k<3;k++){
+    var r = gunBoyu(kutu[k][0], kutu[k][1], D.yer, D.cephe, D.kat, D.karsi, D.mesafe);
+    var kx = KN + k*kw;
+    x.fillStyle = "#68787E"; x.font = "600 21px " + AF;
+    x.fillText(buyuk(kutu[k][2]), kx, 1086);
+    x.fillStyle = "#3B8574"; x.font = "800 40px " + AF;
+    x.fillText(r.saat.toFixed(1).replace(".",",") + " saat", kx, 1126);
+  }
+
+  // ---- uyarı ----
+  x.fillStyle = "#9AA7AC"; x.font = "500 19px " + AF;
+  x.fillText("Bilgilendirme amaçlıdır, kesinlik içermez. Balkon, ağaç ve arazi eğimi hesaba katılmaz.", KN, 1148);
+
+  // ---- iletişim bandı ----
+  x.fillStyle = "#F4F7F7"; x.fillRect(0, 1166, G, Y-1166);
+  var qrB = 128, qrX = G - KN - qrB, qrY = 1196;
+  x.fillStyle = "#FFFFFF";
+  x.beginPath(); x.roundRect(qrX-9, qrY-9, qrB+18, qrB+18, 12); x.fill();
+  qrCiz(x, qrX, qrY, qrB);
+  x.fillStyle = "#68787E"; x.font = "600 17px " + AF; x.textAlign = "center";
+  x.fillText("WhatsApp'tan yaz", qrX + qrB/2, qrY + qrB + 26);
+  x.textAlign = "left";
+  x.fillStyle = "#2C3438"; x.font = "800 32px " + AF;
+  x.fillText("Armağan Kocabaş", KN, 1220);
+  x.fillStyle = "#68787E"; x.font = "500 23px " + AF;
+  x.fillText("İstanbul Lüks Konut Uzmanı · RE/MAX Eksen", KN, 1256);
+  x.fillStyle = "#3B8574"; x.font = "700 25px " + AF;
+  x.fillText("0507 917 33 58", KN, 1296);
+  x.fillText("@rmx.armagankocabas", KN, 1330);
+  return cv;
+}
+
+/* Paylaşım görseline izometrik odayı bas */
+function gorseleOda(x, a, gx, gy, gw, gh){
+  var K = izoKur(gw, gh);
+  K.ox += gx; K.oy += gy;
+  var tf = Math.tan(a.fark * RAD);
+  function pol(pts, dolgu, cizgi){
+    x.beginPath();
+    for(var i=0;i<pts.length;i++){
+      var q = izoN(K, pts[i][0], pts[i][1], pts[i][2]);
+      if(i) x.lineTo(q.x,q.y); else x.moveTo(q.x,q.y);
+    }
+    x.closePath();
+    if(dolgu){ x.fillStyle = dolgu; x.fill(); }
+    if(cizgi){ x.strokeStyle = cizgi; x.lineWidth = 2; x.stroke(); }
+  }
+  karsiBinaCiz(x, K, pol, true);
+  pol([[0,0,0],[ODA_DERINLIK,0,0],[ODA_DERINLIK,ODA_GENIS,0],[0,ODA_GENIS,0]], "#F7F9F9", "#B0BEC5");
+  pol([[0,0,0],[0,ODA_GENIS,0],[0,ODA_GENIS,ODA_YUKSEK],[0,0,ODA_YUKSEK]], "#E0E8E8", "#B0BEC5");
+  pol([[0,0,0],[ODA_DERINLIK,0,0],[ODA_DERINLIK,0,ODA_YUKSEK],[0,0,ODA_YUKSEK]], "#EEF3F3", "#B0BEC5");
+  pol([[0,PY0,PENCERE_ALT],[0,PY1,PENCERE_ALT],[0,PY1,PENCERE_UST],[0,PY0,PENCERE_UST]], "#CBE0EA", "#96AFBE");
+  if(a.durum === "dogrudan" && a.uzak > a.yakin){
+    pol([[0,kis(PY0),PENCERE_UST],[0,kis(PY1),PENCERE_UST],
+         [a.uzak,kis(PY1+a.uzak*tf),0],[a.uzak,kis(PY0+a.uzak*tf),0]], "rgba(232,161,0,.24)");
+    pol([[a.yakin,kis(PY0+a.yakin*tf),0],[a.yakin,kis(PY1+a.yakin*tf),0],
+         [a.uzak,kis(PY1+a.uzak*tf),0],[a.uzak,kis(PY0+a.uzak*tf),0]], "rgba(232,161,0,.94)", "#C88700");
+  }
+}
+
+
+/* Türkçe karakterleri harf harf çevir; yoksa "Üsküdar" -> "-sk-dar" oluyor */
+function gorselPaylas(){
+  var not = el("paylasNot");
+  var cv;
+  try { cv = gorselUret(); }
+  catch(e){ not.textContent = "Görsel oluşturulamadı. Tarayıcını güncelleyip tekrar dene."; return; }
+  cv.toBlob(function(blob){
+    if(!blob){ not.textContent = "Görsel oluşturulamadı."; return; }
+    var adi = dosyaAdi("png");
+    var dosya = null;
+    try { dosya = new File([blob], adi, {type:"image/png"}); } catch(e){}
+    if(dosya && navigator.canShare && navigator.canShare({files:[dosya]})){
+      navigator.share({files:[dosya], title:"Güneş Alır mı?"})
+        .then(function(){ not.textContent = "Görsel paylaşıldı."; })
+        .catch(function(){ gorselIndir(blob, adi, not); });
+    } else {
+      gorselIndir(blob, adi, not);
+    }
+  }, "image/png");
+}
+function gorselIndir(blob, adi, not){
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url; a.download = adi;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+  not.textContent = "Görsel indirildi.";
+}
+
+function baglantiKopyala(){
+  var url = baglantiKur(), not = el("paylasNot");
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url)
+      .then(function(){ not.textContent = "Bağlantı kopyalandı — ayarların içinde saklı."; })
+      .catch(function(){ baglantiYedek(url, not); });
+  } else { baglantiYedek(url, not); }
+}
+function baglantiYedek(url, not){
+  if(navigator.share){
+    navigator.share({url:url, title:"Güneş Alır mı?"}).catch(function(){});
+    not.textContent = "Paylaşım penceresi açıldı.";
+  } else {
+    not.textContent = "Kopyalanamadı. Adres satırındaki bağlantıyı elle kopyalayabilirsin.";
+    history.replaceState(null, "", url);
+  }
+}
+
+
+/* --- 7d. CTA: WhatsApp mesajını analizle birlikte hazırla --- */
+var WA_NUMARA = "905079173358";
+function ctaGuncelle(){
+  var a = el("ctaLink");
+  if(!a) return;
+  var c = gunuCoz(D.gunNo);
+  var g = gunBoyu(c.ay, c.gun, D.yer, D.cephe, D.kat, D.karsi, D.mesafe);
+  var satirlar = [
+    "Merhaba Armağan Bey,",
+    "",
+    "Güneş Alır mı? aracıyla bir cephe inceledim:",
+    "",
+    "Konum: " + D.yer.ad,
+    "Cephe: " + yonAdi(D.cephe) + " (" + D.cephe + "°)",
+    "Kat: " + D.kat + " · Karşı bina: " + D.karsi + " kat, " + D.mesafe + " m",
+    c.gun + " " + AYLAR[c.ay] + ": " + g.saat.toFixed(1).replace(".",",") + " saat doğrudan güneş",
+    "",
+    baglantiKur(),
+    "",
+    "Bu konuda görüşebilir miyiz?"
+  ];
+  a.href = "https://wa.me/" + WA_NUMARA + "?text=" + encodeURIComponent(satirlar.join("\n"));
+}
+
+
+
+/* --- 7f. Çok sayfalı A4 rapor (150 dpi) --- */
+var SAY_G = 1240, SAY_Y = 1754, KEN = 96, AF2 = "Inter, Helvetica, Arial, sans-serif";
+
+function sayfaAc(){
+  var cv = document.createElement("canvas");
+  cv.width = SAY_G; cv.height = SAY_Y;
+  var x = cv.getContext("2d");
+  x.fillStyle = "#FFFFFF"; x.fillRect(0,0,SAY_G,SAY_Y);
+  return { cv:cv, x:x };
+}
+function sayfaBasi(x, altyazi){
+  x.fillStyle = "#3B8574"; x.fillRect(0,0,SAY_G,150);
+  if(logoHazir){ try { x.drawImage(LOGO, SAY_G-KEN-78, 36, 78, 78); } catch(e){} }
+  x.fillStyle = "#FFFFFF"; x.textAlign = "left";
+  x.font = "800 44px " + AF2;
+  x.fillText("Güneş Alır mı?", KEN, 78);
+  x.fillStyle = "rgba(255,255,255,.85)"; x.font = "500 21px " + AF2;
+  x.fillText(altyazi, KEN, 116);
+}
+function sayfaAlti(x, no, toplam){
+  x.strokeStyle = "#E6EBEB"; x.lineWidth = 2;
+  x.beginPath(); x.moveTo(KEN, SAY_Y-92); x.lineTo(SAY_G-KEN, SAY_Y-92); x.stroke();
+  x.fillStyle = "#9AA7AC"; x.font = "500 19px " + AF2;
+  x.textAlign = "left";
+  x.fillText("Armağan Kocabaş · RE/MAX Eksen · gunesalirmi.com", KEN, SAY_Y-58);
+  x.textAlign = "right";
+  x.fillText("Sayfa " + no + " / " + toplam, SAY_G-KEN, SAY_Y-58);
+  x.textAlign = "left";
+}
+function baslik(x, metin, y){
+  x.fillStyle = "#3B8574"; x.font = "700 21px " + AF2;
+  x.textAlign = "left";
+  x.fillText(buyuk(metin), KEN, y);
+  x.strokeStyle = "#E6EBEB"; x.lineWidth = 2;
+  x.beginPath(); x.moveTo(KEN, y+16); x.lineTo(SAY_G-KEN, y+16); x.stroke();
+}
+
+/* SAYFA 1 — künye, ana rakam, oda görseli */
+function raporSayfa1(c, g, an){
+  var s = sayfaAc(), x = s.x;
+  sayfaBasi(x, "CEPHE GÜNEŞ ANALİZİ");
+
+  baslik(x, "Analiz edilen cephe", 226);
+  x.fillStyle = "#2C3438"; x.font = "800 40px " + AF2;
+  x.fillText(D.yer.ad + " · " + yonAdi(D.cephe), KEN, 286);
+  x.fillStyle = "#68787E"; x.font = "500 24px " + AF2;
+  x.fillText(D.cephe + "° · " + D.kat + ". kat · karşı bina " + D.karsi + " kat, " + D.mesafe + " m", KEN, 324);
+
+  x.fillStyle = "#F4F7F7";
+  x.beginPath(); x.roundRect(KEN, 356, SAY_G-2*KEN, 190, 22); x.fill();
+  x.fillStyle = "#68787E"; x.font = "600 21px " + AF2;
+  x.fillText(c.gun + " " + buyuk(AYLAR[c.ay]) + " — DOĞRUDAN GÜNEŞ", KEN+36, 406);
+  x.fillStyle = "#E8A100"; x.font = "800 84px " + AF2;
+  x.fillText(g.saat.toFixed(1).replace(".",",") + " saat", KEN+36, 486);
+  x.fillStyle = "#68787E"; x.font = "500 22px " + AF2;
+  x.fillText(g.ilk !== null ? "Yaklaşık " + ss(g.ilk) + " – " + ss(g.son) + " arası"
+                            : "Bu tarihte doğrudan güneş girmiyor", KEN+36, 524);
+
+  baslik(x, "Oda — ışık nereye düşüyor", 610);
+  gorseleOda(x, an, KEN+120, 662, 900, 480);
+
+  baslik(x, "Bu tarihte gün boyu", 1230);
+  var sx = KEN, sw = SAY_G-2*KEN, sy = 1262, sh = 54;
+  var renkler = {dogrudan:"#E8A100", engelli:"#C0666E", dolayli:"#6E9DC9", gece:"#E6EAEC"};
+  var dw = sw / g.dilim.length;
+  for(var i=0;i<g.dilim.length;i++){
+    x.fillStyle = renkler[g.dilim[i]];
+    x.fillRect(sx + i*dw, sy, Math.ceil(dw)+0.5, sh);
+  }
+  x.fillStyle = "#68787E"; x.font = "500 19px " + AF2;
+  var etk = ["00","06","12","18","24"];
+  for(var j=0;j<5;j++){
+    x.textAlign = j===0 ? "left" : j===4 ? "right" : "center";
+    x.fillText(etk[j], sx + sw*(j/4), sy + sh + 30);
+  }
+  x.textAlign = "left";
+  var efs = [["#E8A100","Doğrudan güneş"],["#C0666E","Karşı bina kesiyor"],
+             ["#6E9DC9","Gündüz, cephe arkada"],["#E6EAEC","Gece"]];
+  var ex = KEN;
+  for(var k=0;k<efs.length;k++){
+    x.fillStyle = efs[k][0];
+    x.beginPath(); x.roundRect(ex, 1372, 18, 18, 5); x.fill();
+    x.fillStyle = "#68787E"; x.font = "500 19px " + AF2;
+    x.fillText(efs[k][1], ex+26, 1387);
+    ex += x.measureText(efs[k][1]).width + 66;
+  }
+  sayfaAlti(x, 1, 3);
+  return s.cv;
+}
+
+/* SAYFA 2 — güneşin yolu, yıl boyu karşılaştırma */
+function raporSayfa2(c, an){
+  var s = sayfaAc(), x = s.x;
+  sayfaBasi(x, "GÜNEŞİN YOLU VE MEVSİMLER");
+
+  baslik(x, "Güneşin gün boyu yolu", 226);
+  dialGovde(x, SAY_G/2, 640, 330, an, 22);
+  x.fillStyle = "#68787E"; x.font = "500 20px " + AF2; x.textAlign = "center";
+  x.fillText("Sarı çizgi güneşin yolu · yeşil ok cephenin baktığı yön · sarı alan cephenin gördüğü bölge",
+             SAY_G/2, 1024);
+  x.textAlign = "left";
+
+  baslik(x, "Yıl boyunca", 1112);
+  var kutu = [[11,21,"21 Aralık"],[2,21,"21 Mart"],[5,21,"21 Haziran"]];
+  var kw = (SAY_G - 2*KEN - 44) / 3;
+  for(var i=0;i<3;i++){
+    var r = gunBoyu(kutu[i][0], kutu[i][1], D.yer, D.cephe, D.kat, D.karsi, D.mesafe);
+    var kx = KEN + i*(kw+22);
+    x.strokeStyle = "#E6EBEB"; x.lineWidth = 2;
+    x.beginPath(); x.roundRect(kx, 1150, kw, 200, 20); x.stroke();
+    x.fillStyle = "#68787E"; x.font = "600 19px " + AF2;
+    x.fillText(buyuk(kutu[i][2]), kx+26, 1196);
+    x.fillStyle = "#3B8574"; x.font = "800 46px " + AF2;
+    x.fillText(r.saat.toFixed(1).replace(".",",") + " saat", kx+26, 1256);
+    x.fillStyle = "#68787E"; x.font = "500 19px " + AF2;
+    x.fillText(r.ilk !== null ? ss(r.ilk) + " – " + ss(r.son) : "Doğrudan güneş yok", kx+26, 1300);
+  }
+  sayfaAlti(x, 2, 3);
+  return s.cv;
+}
+
+/* SAYFA 3 — iletişim ve uyarı */
+function raporSayfa3(){
+  var s = sayfaAc(), x = s.x;
+  sayfaBasi(x, "İLETİŞİM VE ÖNEMLİ UYARI");
+
+  baslik(x, "İletişim", 226);
+  var qrB = 250, qrX = SAY_G - KEN - qrB, qrY = 262;
+  qrCiz(x, qrX, qrY, qrB);
+  x.fillStyle = "#68787E"; x.font = "600 19px " + AF2; x.textAlign = "center";
+  x.fillText("WhatsApp'tan yaz", qrX + qrB/2, qrY + qrB + 32);
+  x.textAlign = "left";
+  x.fillStyle = "#2C3438"; x.font = "800 38px " + AF2;
+  x.fillText("Armağan Kocabaş", KEN, 306);
+  x.fillStyle = "#68787E"; x.font = "500 24px " + AF2;
+  x.fillText("İstanbul Lüks Konut Uzmanı · RE/MAX Eksen", KEN, 346);
+  x.fillStyle = "#3B8574"; x.font = "700 28px " + AF2;
+  x.fillText("0507 917 33 58", KEN, 402);
+  x.fillText("@rmx.armagankocabas", KEN, 444);
+  x.fillStyle = "#68787E"; x.font = "600 24px " + AF2;
+  x.fillText("gunesalirmi.com", KEN, 486);
+
+  baslik(x, "Bu bilgiler kesinlik içermez", 610);
+  var metin = [
+    "Bu rapor yalnızca bilgilendirme amaçlıdır. Güneşin konumu astronomik olarak",
+    "hesaplanır; ancak sonuç balkon, saçak, çıkma, pergole, yan binalar, ağaçlar,",
+    "arazi eğimi, cam türü, perde ve hava koşullarını hesaba katmaz.",
+    "",
+    "Üretilen değerler tahminîdir; garanti, taahhüt veya ekspertiz raporu niteliği",
+    "taşımaz. Alım, satım, kiralama, yatırım veya proje kararlarına tek başına",
+    "esas alınamaz.",
+    "",
+    "Kesin sonuç için mülkü farklı mevsim ve saatlerde yerinde görmek ve",
+    "gerektiğinde uzman görüşü almak şarttır. Bu rapordan doğabilecek",
+    "sonuçlardan kullanıcı sorumludur."
+  ];
+  x.fillStyle = "#4A585F"; x.font = "500 24px " + AF2;
+  for(var i=0;i<metin.length;i++) x.fillText(metin[i], KEN, 668 + i*40);
+
+  baslik(x, "Hesap neye dayanıyor", 1160);
+  var m2 = [
+    "Saat dilimi UTC+3 (Türkiye'de yaz saati uygulaması yoktur).",
+    "Bir pencere, güneşin yönü cephe yönünün ±90° aralığındayken doğrudan güneş alır.",
+    "Kat yüksekliği 3 m, pencere alt kenarı 90 cm, üst kenarı 220 cm kabul edilmiştir.",
+    "Karşı bina, cepheye paralel uzanan kesintisiz bir blok olarak modellenmiştir."
+  ];
+  x.fillStyle = "#4A585F"; x.font = "500 22px " + AF2;
+  for(var j=0;j<m2.length;j++) x.fillText("· " + m2[j], KEN, 1218 + j*38);
+
+  sayfaAlti(x, 3, 3);
+  return s.cv;
+}
+
+/* --- 7e. PDF rapor: kütüphanesiz, tek sayfa A4 --- */
+function yaziBayt(t){
+  var b = new Uint8Array(t.length);
+  for(var i=0;i<t.length;i++) b[i] = t.charCodeAt(i) & 0xFF;
+  return b;
+}
+function pdfKur(sayfalar){
+  var SW = 595, SH = 842, N = sayfalar.length;
+  var parca = [], ofset = [];
+  function ekle(v){ parca.push(typeof v === "string" ? yaziBayt(v) : v); }
+  function boy(){ var n=0; for(var i=0;i<parca.length;i++) n += parca[i].length; return n; }
+
+  // nesne düzeni: 1 katalog, 2 pages, sonra her sayfa için 3 nesne (page, image, content)
+  var kids = [];
+  for(var i=0;i<N;i++) kids.push((3 + i*3) + " 0 R");
+
+  ekle("%PDF-1.4\n");
+  var toplamNesne = 2 + N*3;
+
+  function nesneYaz(no, govde, akis){
+    ofset[no-1] = boy();
+    ekle(no + " 0 obj\n");
+    ekle(govde + "\n");
+    if(akis){ ekle("stream\n"); ekle(akis); ekle("\nendstream\n"); }
+    ekle("endobj\n");
+  }
+
+  nesneYaz(1, "<</Type/Catalog/Pages 2 0 R>>");
+  nesneYaz(2, "<</Type/Pages/Kids[" + kids.join(" ") + "]/Count " + N + ">>");
+
+  for(var p=0;p<N;p++){
+    var sayfaNo = 3 + p*3, imgNo = sayfaNo+1, icNo = sayfaNo+2;
+    var g = sayfalar[p];
+    var iw = SW, ih = Math.round(SW * g.h / g.w);
+    if(ih > SH){ ih = SH; iw = Math.round(SH * g.w / g.h); }
+    var ix = Math.round((SW-iw)/2), iy = Math.round((SH-ih)/2);
+    var icerik = "q " + iw + " 0 0 " + ih + " " + ix + " " + iy + " cm /Im0 Do Q";
+
+    nesneYaz(sayfaNo, "<</Type/Page/Parent 2 0 R/MediaBox[0 0 " + SW + " " + SH +
+             "]/Resources<</XObject<</Im0 " + imgNo + " 0 R>>>>/Contents " + icNo + " 0 R>>");
+    nesneYaz(imgNo, "<</Type/XObject/Subtype/Image/Width " + g.w + "/Height " + g.h +
+             "/ColorSpace/DeviceRGB/BitsPerComponent 8/Filter/DCTDecode/Length " + g.jpg.length + ">>", g.jpg);
+    nesneYaz(icNo, "<</Length " + icerik.length + ">>", icerik);
+  }
+
+  var xref = boy();
+  ekle("xref\n0 " + (toplamNesne+1) + "\n0000000000 65535 f \n");
+  for(var k=0;k<toplamNesne;k++) ekle(("0000000000" + ofset[k]).slice(-10) + " 00000 n \n");
+  ekle("trailer\n<</Size " + (toplamNesne+1) + "/Root 1 0 R>>\nstartxref\n" + xref + "\n%%EOF");
+
+  var toplam = boy(), cikti = new Uint8Array(toplam), q = 0;
+  for(var m=0;m<parca.length;m++){ cikti.set(parca[m], q); q += parca[m].length; }
+  return cikti;
+}
+
+function pdfIndir(){
+  var not = el("paylasNot");
+  not.textContent = "Rapor hazırlanıyor…";
+  var c = gunuCoz(D.gunNo);
+  var g = gunBoyu(c.ay, c.gun, D.yer, D.cephe, D.kat, D.karsi, D.mesafe);
+  var an = analiz(trAn(c.ay, c.gun, D.dakika), D.yer, D.cephe, D.kat, D.karsi, D.mesafe);
+
+  var cvler;
+  try { cvler = [raporSayfa1(c, g, an), raporSayfa2(c, an), raporSayfa3()]; }
+  catch(e){ not.textContent = "Rapor oluşturulamadı."; return; }
+
+  var isler = cvler.map(function(cv){
+    return new Promise(function(coz, red){
+      cv.toBlob(function(b){
+        if(!b) return red();
+        b.arrayBuffer().then(function(ab){
+          coz({ jpg:new Uint8Array(ab), w:cv.width, h:cv.height });
+        }).catch(red);
+      }, "image/jpeg", 0.9);
+    });
+  });
+
+  Promise.all(isler).then(function(sayfalar){
+    var pdf;
+    try { pdf = pdfKur(sayfalar); }
+    catch(e){ not.textContent = "PDF oluşturulamadı. Görsel olarak indirmeyi dene."; return; }
+    var pb = new Blob([pdf], {type:"application/pdf"});
+    var adi = dosyaAdi("pdf");
+    var dosya = null;
+    try { dosya = new File([pb], adi, {type:"application/pdf"}); } catch(e){}
+    if(dosya && navigator.canShare && navigator.canShare({files:[dosya]})){
+      navigator.share({files:[dosya], title:"Güneş Alır mı? raporu"})
+        .then(function(){ not.textContent = "Rapor paylaşıldı."; })
+        .catch(function(){ gorselIndir(pb, adi, not); not.textContent = "PDF rapor indirildi (3 sayfa)."; });
+    } else {
+      gorselIndir(pb, adi, not);
+      not.textContent = "PDF rapor indirildi (3 sayfa).";
+    }
+  }).catch(function(){ not.textContent = "Rapor oluşturulamadı."; });
+}
+
+/* --- 7c. Pusula --- */
+var pusulaAcik = false, pusulaDeger = null;
+function pusulaOkundu(e){
+  var h = null;
+  if(typeof e.webkitCompassHeading === "number"){ h = e.webkitCompassHeading; }
+  else if(e.absolute === true && typeof e.alpha === "number"){ h = (360 - e.alpha) % 360; }
+  if(h === null || isNaN(h)) return;
+  pusulaDeger = Math.round(h) % 360;
+  el("pusulaDer").textContent = pusulaDeger + "°";
+  el("pusulaYon").textContent = yonAdi(pusulaDeger);
+}
+function pusulaBasla(){
+  var not = el("pusulaNot");
+  not.hidden = false;
+  if(!window.DeviceOrientationEvent){
+    not.textContent = "Bu cihazda pusula yok. Yönü listeden veya kaydırıcıdan seç.";
+    return;
+  }
+  function dinle(){
+    pusulaAcik = true;
+    el("pusulaKutu").hidden = false;
+    el("pusula").textContent = "Pusulayı kapat";
+    not.textContent = "Pusula manyetik alandan etkilenir; metal, elektronik ve araç içinde şaşabilir.";
+    window.addEventListener("deviceorientationabsolute", pusulaOkundu, true);
+    window.addEventListener("deviceorientation", pusulaOkundu, true);
+    setTimeout(function(){
+      if(pusulaDeger === null){
+        not.textContent = "Pusuladan veri gelmedi. Telefonu 8 çizer gibi hareket ettir ya da yönü elle seç.";
+      }
+    }, 3000);
+  }
+  if(typeof DeviceOrientationEvent.requestPermission === "function"){
+    DeviceOrientationEvent.requestPermission().then(function(izin){
+      if(izin === "granted") dinle();
+      else not.textContent = "Pusula izni verilmedi. Yönü elle seçebilirsin.";
+    }).catch(function(){
+      not.textContent = "Pusula açılamadı. Sayfanın https ile açık olması gerekir.";
+    });
+  } else { dinle(); }
+}
+function pusulaDur(){
+  pusulaAcik = false; pusulaDeger = null;
+  window.removeEventListener("deviceorientationabsolute", pusulaOkundu, true);
+  window.removeEventListener("deviceorientation", pusulaOkundu, true);
+  el("pusulaKutu").hidden = true;
+  el("pusula").textContent = "Pusulayla bul";
+  el("pusulaNot").hidden = true;
+}
+
+(function kurEkler(){
+  ctaGuncelle();
+  el("pdf").addEventListener("click", pdfIndir);
+  el("gorsel").addEventListener("click", gorselPaylas);
+  el("baglanti").addEventListener("click", baglantiKopyala);
+  el("pusula").addEventListener("click", function(){ pusulaAcik ? pusulaDur() : pusulaBasla(); });
+  el("pusulaAl").addEventListener("click", function(){
+    if(pusulaDeger === null) return;
+    D.cephe = pusulaDeger;
+    el("cephe").value = D.cephe;
+    pusulaDur();
+    ciz();
+  });
+})();
+
+function basla(){
+  oynuyor = true; el("oynat").textContent = "❚❚";
+  el("oynat").setAttribute("aria-label","Durdur");
+  zamanlayici = setInterval(function(){
+    D.dakika = (D.dakika + 10) % 1440;
+    el("saat").value = D.dakika;
+    cizAnlik();
+  }, 90);
+}
+function dur(){
+  oynuyor = false; clearInterval(zamanlayici);
+  el("oynat").textContent = "▶";
+  el("oynat").setAttribute("aria-label","Günü oynat");
+}
+
+</script>
+</body>
+</html>
