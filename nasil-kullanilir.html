@@ -41,7 +41,7 @@ button,a,select,input{-webkit-tap-highlight-color:rgba(59,133,116,.15)}
 body{
   background:var(--zemin);color:var(--metin);
   font-family:var(--ana);line-height:1.72;
-  -webkit-font-smoothing:antialiased;padding-bottom:calc(92px + env(safe-area-inset-bottom));
+  -webkit-font-smoothing:antialiased;padding-top:30px;padding-bottom:calc(92px + env(safe-area-inset-bottom));
 }
 .wrap{max-width:720px;margin:0 auto;padding:22px 20px 48px}
 
@@ -156,7 +156,7 @@ details.sss p{margin:11px 0 0;color:var(--gri);font-size:14px}
 /* ---- Tarayıcıdan yazdırma / PDF'e bas ---- */
 @media print{
   @page{ size:A4; margin:14mm 12mm; }
-  body{ padding-bottom:0; background:#fff; }
+  body{ padding-top:0; padding-bottom:0; background:#fff; }
   .wrap{ max-width:none; padding:0; }
 
   /* Başlık kendi görselinden kopmasın */
@@ -196,6 +196,13 @@ details.sss p{margin:11px 0 0;color:var(--gri);font-size:14px}
 </style>
 </head>
 <body>
+<nav id="serit-ag">
+  <span>Ücretsiz emlak araçları:</span>
+  <a href="https://parseltur.com">Parsel videosu</a>
+  <a href="https://gunesalirmi.com" class="burada">Güneş alır mı?</a>
+  <a href="https://3dkatplan.com">3D kat planı</a>
+  <a href="https://ilanfotosu.com">İlan fotoğrafı</a>
+</nav>
 <div class="wrap">
 
   <div class="ustcizgi">
@@ -234,8 +241,9 @@ details.sss p{margin:11px 0 0;color:var(--gri);font-size:14px}
     <p><b>Pusula neden bazen şaşırır?</b> Telefonun pusulası manyetik alanı ölçer. Kalorifer peteği, çelik kapı, buzdolabı, araç içi ve elektrik panosu yakınında sapma yapar. Değer oynuyorsa telefonu havada 8 çizer gibi hareket ettir, sonra tekrar oku. Pusula iOS'ta ilk kullanımda izin ister; sayfanın <b>https</b> ile açık olması gerekir.</p>
   </div>
 
-  <p class="adim">2 · İnce ayar</p>
+  <p class="adim">2 · Ayrıntılar (isteğe bağlı)</p>
   <h2>Tarih, saat ve karşı bina</h2>
+  <p>Araç, sen hiçbir şeye dokunmadan varsayılan değerlerle sonuç verir. Daha doğru bir cevap için <b>"Daha doğru sonuç için ayrıntıları ekle"</b> yazan bölümü aç. Sonuç kartında hangi varsayımlarla hesaplandığı da yazar.</p>
   <p><b>Tarih</b> sonucu en çok değiştiren ayardır. Araç <b>bugünün tarihiyle</b> açılır; yani ilk gördüğün rakam şu anki mevsime aittir. Dört hazır düğme var:</p>
   <ul>
     <li><b>Bugün</b> — içinde bulunduğun mevsim.</li>
@@ -252,6 +260,7 @@ details.sss p{margin:11px 0 0;color:var(--gri);font-size:14px}
 
   <p class="adim">3 · Sonucu okuma</p>
   <h2>Ekranda ne var?</h2>
+  <p>En üstte yeşil <b>sonuç kartı</b> durur: o cephenin seçili tarihte kaç saat doğrudan güneş aldığı, hangi saatler arasında olduğu ve o an ışığın odaya kaç metre girdiği. Altında PDF, görsel ve bağlantı düğmeleri; onların altında da grafikler yer alır. Teknik değerler (azimut, güneş yüksekliği) <b>"Detaylı veriler"</b> bölümünde saklıdır.</p>
   <p>Ayarlar üstte, sonuçlar hemen altındadır — bir kaydırıcıyı oynattığında görseller anında değişir. Geniş ekranda ayarlar solda sabit durur, sonuçlar sağda; ikisi aynı anda görünür.</p>
   <h3>Soldaki gökyüzü kubbesi</h3>
   <p>Bu daire <b>dünya değil, gökyüzüdür.</b> Pencerenden yukarı baktığında gördüğün yarım küreye tepeden bakıyorsun: <b>merkez tam tepen</b> (90°), <b>kenar ise ufuk</b> (0°). Aradaki ince halkalar 30° ve 60° yüksekliği gösterir, bu yüzden güneşin ne kadar yukarıda olduğunu gözle ölçebilirsin.</p>
@@ -293,6 +302,7 @@ details.sss p{margin:11px 0 0;color:var(--gri);font-size:14px}
     <li><b>3. sayfa</b> — iletişim bilgileri, QR kod ve uyarı metninin tamamı.</li>
   </ul>
   <p>E-postayla göndermek, dosyaya koymak veya çıktı alıp yerinde göstermek için bunu kullan.</p>
+  <p>İndirme düğmelerinin altında <b>ilanfotosu.com</b> yönlendirmesi çıkar — ilan fotoğraflarındaki plaka, yüz ve konum bilgisini temizlemek için. Sayfanın en üstündeki yeşil şeritten de diğer ücretsiz araçlara geçebilirsin.</p>
   <p>Üçüncü sayfadaki telefon, Instagram adresi, site adresi ve kitap adları <b>tıklanabilir bağlantıdır</b> — PDF'i ekranda okuyan kişi doğrudan arayabilir veya ilgili sayfayı açabilir. Kâğıda basılmış halde ise QR kod aynı işi görür.</p>
 
   <h3>Görsel olarak indir</h3>
@@ -425,6 +435,12 @@ details.sss p{margin:11px 0 0;color:var(--gri);font-size:14px}
     </div>
 
     <p class="ab-not">Bu araç ücretsizdir, isteyen herkes kullanabilir. Emlak danışmanı meslektaşlarım da müşterilerine gönül rahatlığıyla paylaşabilir.</p>
+    <div class="telif">
+      <a href="https://www.armagankocabas.com" class="site">www.armagankocabas.com</a>
+      <div>Armağan Kocabaş — İstanbul Lüks Konut Uzmanı, RE/MAX Eksen</div>
+      <div>&copy; <span id="yil"></span> Armağan Kocabaş. Tüm hakları saklıdır.</div>
+    </div>
+
   </div>
 </div>
 
@@ -432,6 +448,7 @@ details.sss p{margin:11px 0 0;color:var(--gri);font-size:14px}
 <div class="cta"><a href="index.html">Aracı Kullanmaya Başla</a></div>
 
 <script>
+document.addEventListener('DOMContentLoaded',function(){var y=document.getElementById('yil');if(y)y.textContent=new Date().getFullYear();});
 var RAD = Math.PI/180, GUN_MS = 864e5, J1970 = 2440588, J2000 = 2451545;
 var EGIM = RAD * 23.4397;
 

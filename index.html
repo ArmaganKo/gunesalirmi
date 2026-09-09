@@ -51,13 +51,14 @@ body{
   background:var(--zemin);color:var(--metin);
   font-family:var(--ana);font-weight:400;line-height:1.62;
   -webkit-font-smoothing:antialiased;
+  padding-top:30px;
   padding-bottom:calc(92px + env(safe-area-inset-bottom));
 }
-.wrap{max-width:1120px;margin:0 auto;padding:22px 20px 48px}
+.wrap{max-width:1180px;margin:0 auto;padding:22px 20px 48px}
 .duzen{display:grid;gap:26px}
 @media(min-width:960px){
-  .duzen{grid-template-columns:370px minmax(0,1fr);align-items:start}
-  .sol{position:sticky;top:18px}
+  .duzen{grid-template-columns:330px minmax(0,1fr);align-items:start}
+  .sol{position:sticky;top:48px}
 }
 
 /* başlık */
@@ -232,6 +233,93 @@ canvas{display:block;width:100%;height:auto;touch-action:manipulation}
 .ab-kart em{display:block;font-style:normal;font-size:11.5px;color:var(--gri);margin-top:2px}
 .ab-not{font-size:12px;color:var(--gri);margin:16px 0 0;line-height:1.5}
 @media print{.altbilgi{display:none !important}}
+
+
+
+.mevsim-baslik{
+  font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--yesil);margin:22px 0 10px;
+}
+.mev-mevsim{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:2px}
+.mev-ad{font-size:11px !important;letter-spacing:.1em}
+
+/* --- değer önerisi --- */
+.vaat{font-size:19px;font-weight:800;letter-spacing:-.02em;margin:0 0 4px}
+.vaat-alt{font-size:14px;color:var(--gri);margin:0 0 16px}
+
+/* --- ayrıntılar accordion --- */
+details.ayrinti{padding:0;border:1px solid var(--cizgi);border-radius:14px;background:#fff}
+details.ayrinti > summary{
+  cursor:pointer;list-style:none;padding:16px 18px;min-height:44px;
+  font-size:15px;font-weight:700;line-height:1.3;
+}
+details.ayrinti > summary::-webkit-details-marker{display:none}
+details.ayrinti > summary::after{content:"+";float:right;color:var(--yesil);font-weight:800;font-size:21px;line-height:1}
+details.ayrinti[open] > summary::after{content:"−"}
+details.ayrinti > summary em{display:block;font-style:normal;font-size:12.5px;font-weight:500;color:var(--gri);margin-top:3px}
+details.ayrinti[open] > summary{border-bottom:1px solid var(--cizgi)}
+details.ayrinti .satir{padding:0 18px}
+details.ayrinti .satir:first-of-type{padding-top:18px}
+details.ayrinti .satir:last-child{padding-bottom:18px}
+
+/* --- ana sonuç kartı --- */
+.sonuc{
+  background:linear-gradient(160deg,#2C6355 0%,#3B8574 100%);
+  color:#fff;border-radius:18px;padding:24px 22px;margin-bottom:14px;
+}
+.sonuc-ust{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75);margin:0 0 6px;font-weight:600}
+.sonuc-buyuk{margin:0;font-size:clamp(30px,8vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.sonuc-buyuk em{font-style:normal;font-size:clamp(15px,4vw,19px);font-weight:600;display:block;margin-top:6px;color:rgba(255,255,255,.9)}
+.sonuc-alt{margin:12px 0 0;font-size:15px;color:rgba(255,255,255,.92)}
+.sonuc-derin{margin:4px 0 0;font-size:15px;color:rgba(255,255,255,.92)}
+.sonuc-uyari{
+  margin:14px 0 0;padding:11px 13px;border-radius:11px;
+  background:rgba(255,255,255,.15);font-size:13px;line-height:1.45;
+}
+.sonuc-uyari b{font-weight:700}
+
+/* --- aksiyonlar --- */
+.paylas-ikili{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:9px}
+.paylas .btn-ana,.paylas .btn-ikinci{min-height:48px}
+.kesinlik-not{font-size:12px;color:var(--gri);line-height:1.5;margin:14px 0 0}
+
+/* --- teknik veriler --- */
+details.teknik{border-top:1px solid var(--cizgi)}
+details.teknik > summary{
+  cursor:pointer;list-style:none;padding:13px 16px;min-height:44px;
+  font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gri);
+}
+details.teknik > summary::-webkit-details-marker{display:none}
+details.teknik > summary::after{content:"+";float:right;color:var(--yesil);font-size:18px}
+details.teknik[open] > summary::after{content:"−"}
+
+/* --- dokunma hedefleri --- */
+button.yon,button.hizli{min-height:46px}
+select,input[type=number]{min-height:48px}
+input[type=range]{height:34px}
+
+/* --- araç ailesi üst şeridi --- */
+#serit-ag{position:fixed;top:0;left:0;right:0;height:30px;background:#2C6355;
+  display:flex;align-items:center;gap:14px;padding:0 12px;overflow-x:auto;z-index:50;
+  font-size:12.5px;white-space:nowrap;-webkit-overflow-scrolling:touch}
+#serit-ag span{color:#BFD8D0;flex:none}
+#serit-ag a{color:#fff;text-decoration:none;flex:none;opacity:.85}
+#serit-ag a:hover{opacity:1;text-decoration:underline}
+#serit-ag a.burada{opacity:1;font-weight:700;cursor:default}
+@media print{#serit-ag{display:none}}
+
+/* --- çapraz yönlendirme --- */
+.capraz{margin-top:14px;background:#E8F1EE;border:1px solid #DFE2E1;
+  border-radius:14px;padding:16px;font-size:14.5px;line-height:1.5}
+.capraz b{display:block;font-size:16px;color:#2C6355;margin-bottom:6px}
+.capraz a{color:#2C6355;font-weight:700}
+@media print{.capraz{display:none}}
+
+/* --- telif --- */
+.telif{margin-top:16px;padding-top:14px;border-top:1px solid #DFE2E1;
+  font-size:12.5px;line-height:1.7;color:#6B7A75}
+.telif a{color:#2C6355}
+.telif a.site{font-weight:700;font-size:14px}
 .imza{margin-top:22px;padding-top:14px;border-top:1px solid var(--cizgi);font-size:12px;color:var(--gri)}
 
 .cta{
@@ -256,7 +344,7 @@ canvas{display:block;width:100%;height:auto;touch-action:manipulation}
 /* ---- Tarayıcıdan yazdırma / PDF'e bas ---- */
 @media print{
   @page{ size:A4; margin:14mm 12mm; }
-  body{ padding-bottom:0; background:#fff; }
+  body{ padding-top:0; padding-bottom:0; background:#fff; }
   .wrap{ max-width:none; padding:0; }
 
   /* Başlık kendi görselinden kopmasın */
@@ -297,6 +385,13 @@ canvas{display:block;width:100%;height:auto;touch-action:manipulation}
 </style>
 </head>
 <body>
+<nav id="serit-ag">
+  <span>Ücretsiz emlak araçları:</span>
+  <a href="https://parseltur.com">Parsel videosu</a>
+  <a href="https://gunesalirmi.com" class="burada">Güneş alır mı?</a>
+  <a href="https://3dkatplan.com">3D kat planı</a>
+  <a href="https://ilanfotosu.com">İlan fotoğrafı</a>
+</nav>
 <div class="wrap">
 
   <p class="sadece-yazdir">Cephe Güneş Analizi · gunesalirmi.com</p>
@@ -310,12 +405,14 @@ canvas{display:block;width:100%;height:auto;touch-action:manipulation}
     </a>
   </div>
 
+  <p class="vaat">Bir evin hangi saatlerde güneş aldığını görün.</p>
+  <p class="vaat-alt">Konumu ve cepheyi seçin, gün içindeki güneş süresini hesaplayın.</p>
   <a class="nasil-btn" href="nasil-kullanilir.html">❓ Nasıl kullanılır?</a>
 
   <div class="duzen">
     <div class="sol">
   <div class="kontrol">
-    <p class="adim">1 · Konum ve cephe</p>
+    <p class="adim">Konum ve cephe</p>
     <div class="satir">
       <label for="konum">Konum — <b id="konumAd">Üsküdar</b></label>
       <select id="konum"></select>
@@ -346,8 +443,9 @@ canvas{display:block;width:100%;height:auto;touch-action:manipulation}
     </div>
   </div>
 
-  <div class="kontrol">
-    <p class="adim">2 · İnce ayar — tarih, saat ve karşı bina</p>
+  <details class="kontrol ayrinti" id="ayrintiKutu">
+    <summary>Daha doğru sonuç için ayrıntıları ekle
+      <em>tarih, saat, kendi katınız, karşı bina</em></summary>
     <div class="satir">
       <label>Hangi tarihte? — <b id="tarihAd">Bugün</b></label>
       <p class="ipucu" style="margin:0 0 10px">Güneş mevsime göre çok değişir. Aynı evi kışın ve yazın ayrı ayrı bak.</p>
@@ -366,21 +464,45 @@ canvas{display:block;width:100%;height:auto;touch-action:manipulation}
     </div>
     <div class="satir ikili">
       <div>
-        <label>Kendi katın — <b id="katAd">3</b></label>
+        <label>Bulunduğunuz kat — <b id="katAd">3</b></label>
         <input type="range" id="kat" min="0" max="20" step="1" value="3" aria-label="Kendi katınız">
       </div>
       <div>
-        <label>Karşı bina katı — <b id="karsiAd">5</b></label>
+        <label>Karşı bina yüksekliği — <b id="karsiAd">5</b> kat</label>
         <input type="range" id="karsi" min="0" max="30" step="1" value="5" aria-label="Karşı bina kat sayısı">
       </div>
     </div>
     <div class="satir">
-      <label>Karşı binaya mesafe — <b id="mesafeAd">14 m</b></label>
+      <label>İki bina arası mesafe — <b id="mesafeAd">14 m</b></label>
       <input type="range" id="mesafe" min="3" max="80" step="1" value="14" aria-label="Karşı binaya mesafe metre">
     </div>
-  </div>
+  </details>
     </div>
     <div class="sag">
+  <div class="sonuc" id="sonucKart">
+    <p class="sonuc-ust" id="sonucUst">Bu cephe bugün</p>
+    <p class="sonuc-buyuk"><span id="sonucSaat">—</span> <em>doğrudan güneş alıyor</em></p>
+    <p class="sonuc-alt" id="sonucAralik">—</p>
+    <p class="sonuc-derin" id="sonucDerin"></p>
+    <p class="sonuc-uyari" id="sonucVarsayim" hidden></p>
+  </div>
+
+  <div class="paylas" id="paylasUst">
+    <button class="btn-ana" id="pdf">PDF Rapor İndir</button>
+    <div class="paylas-ikili">
+      <button class="btn-ikinci" id="gorsel">Görsel İndir</button>
+      <button class="btn-ikinci" id="baglanti">Bağlantıyı Kopyala</button>
+    </div>
+    <p class="ipucu" id="paylasNot">PDF'i e-postayla gönderebilir veya çıktı alabilirsin. Görsel WhatsApp ve Instagram için, bağlantıda ise tüm ayarların saklı.</p>
+    <div class="capraz">
+      <b>Portala girmeden önce bir adım kaldı.</b>
+      Fotoğraflarınızda görünen plaka ve yüzler ile fotoğrafın içindeki konum bilgisini
+      temizlediniz mi? <a href="https://ilanfotosu.com">ilanfotosu.com</a> ile hepsini
+      tek seferde halledebilirsiniz.
+    </div>
+    <p class="kesinlik-not">Sonuçlar bilgilendirme amaçlı tahminlerdir; balkon, saçak, ağaç ve arazi eğimi hesaba katılmaz. Yerinde incelemenin yerini tutmaz.</p>
+  </div>
+
   <div class="sahne">
     <div class="sahne-ust">
       <div class="kutu">
@@ -397,12 +519,15 @@ canvas{display:block;width:100%;height:auto;touch-action:manipulation}
       <span id="durumYazi">—</span>
       <span class="durum-not" id="durumNot"></span>
     </div>
-    <div class="okuma">
-      <div class="hucre"><div class="hucre-etiket">Saat</div><div class="hucre-deger" id="oSaat">—</div></div>
-      <div class="hucre"><div class="hucre-etiket">Güneş yönü</div><div class="hucre-deger" id="oAzimut">—</div></div>
-      <div class="hucre"><div class="hucre-etiket">Güneş yüksekliği</div><div class="hucre-deger" id="oYukseklik">—</div></div>
-      <div class="hucre"><div class="hucre-etiket">Odaya giriş</div><div class="hucre-deger" id="oDerinlik">—</div></div>
-    </div>
+    <details class="teknik">
+      <summary>Detaylı veriler</summary>
+      <div class="okuma">
+        <div class="hucre"><div class="hucre-etiket">Saat</div><div class="hucre-deger" id="oSaat">—</div></div>
+        <div class="hucre"><div class="hucre-etiket">Güneş yönü (azimut)</div><div class="hucre-deger" id="oAzimut">—</div></div>
+        <div class="hucre"><div class="hucre-etiket">Güneş yüksekliği</div><div class="hucre-deger" id="oYukseklik">—</div></div>
+        <div class="hucre"><div class="hucre-etiket">Odaya giriş</div><div class="hucre-deger" id="oDerinlik">—</div></div>
+      </div>
+    </details>
     <div class="serit-sar">
       <p class="kutu-baslik">Bu tarihte gün boyu</p>
       <div class="serit" id="serit"></div>
@@ -416,13 +541,7 @@ canvas{display:block;width:100%;height:auto;touch-action:manipulation}
     </div>
   </div>
 
-  <div class="paylas">
-    <button class="btn-ana" id="pdf">PDF rapor indir</button>
-    <button class="btn-ikinci" id="gorsel">Görsel olarak indir (sosyal medya)</button>
-    <button class="btn-ikinci" id="baglanti">Bağlantıyı kopyala</button>
-    <p class="ipucu" id="paylasNot">PDF'i e-postayla gönderebilir veya çıktı alabilirsin. Görsel WhatsApp ve Instagram için, bağlantıda ise tüm ayarların saklı.</p>
-  </div>
-
+  <p class="mevsim-baslik">Yıl boyunca aynı cephe</p>
   <div class="mevsim" id="mevsim"></div>
     </div>
   </div>
@@ -467,6 +586,12 @@ canvas{display:block;width:100%;height:auto;touch-action:manipulation}
     </div>
 
     <p class="ab-not">Bu araç ücretsizdir, isteyen herkes kullanabilir. Emlak danışmanı meslektaşlarım da müşterilerine gönül rahatlığıyla paylaşabilir.</p>
+    <div class="telif">
+      <a href="https://www.armagankocabas.com" class="site">www.armagankocabas.com</a>
+      <div>Armağan Kocabaş — İstanbul Lüks Konut Uzmanı, RE/MAX Eksen</div>
+      <div>&copy; <span id="yil"></span> Armağan Kocabaş. Tüm hakları saklıdır.</div>
+    </div>
+
   </div>
 </div>
 
@@ -630,6 +755,7 @@ function yerBul(ad){
 var D = { yer:yerBul("Üsküdar"), cephe:180, gunNo:bugunIndex(), dakika:720,
           kat:3, karsi:5, mesafe:14 };
 var oynuyor = false, zamanlayici = null;
+var ayrintiyaDokunuldu = false;
 
 /* ====== 5. ÇİZİM ===================================================== */
 
@@ -889,6 +1015,27 @@ function cizAgir(){
     s.appendChild(i);
   });
 
+  // --- ana sonuç kartı: mevcut gunBoyu/analiz sonuçlarından ---
+  var bugunMu = D.gunNo === bugunIndex();
+  el("sonucUst").textContent = "Bu cephe " + (bugunMu ? "bugün" : c.gun + " " + AYLAR[c.ay] + " tarihinde");
+  el("sonucSaat").textContent = "yaklaşık " + g.saat.toFixed(1).replace(".",",") + " saat";
+  el("sonucAralik").textContent = g.ilk !== null
+    ? "Yaklaşık " + ss(g.ilk) + " – " + ss(g.son) + " arasında"
+    : "Bu tarihte doğrudan güneş girmiyor";
+
+  var an2 = analiz(trAn(c.ay, c.gun, D.dakika), D.yer, D.cephe, D.kat, D.karsi, D.mesafe);
+  el("sonucDerin").textContent = (an2.durum === "dogrudan" && an2.uzak > 0)
+    ? "Saat " + ss(D.dakika) + " itibarıyla ışık odaya yaklaşık " + an2.uzak.toFixed(1).replace(".",",") + " metre giriyor."
+    : "";
+
+  var uy = el("sonucVarsayim");
+  if(!ayrintiyaDokunuldu){
+    uy.hidden = false;
+    uy.innerHTML = "<b>Varsayılan değerlerle hesaplandı:</b> " + D.kat + ". kat, karşı bina " +
+      D.karsi + " kat ve " + D.mesafe + " m uzakta. Karşı bina sonucu en çok değiştiren etkendir — " +
+      "aşağıdaki ayrıntılar bölümünden kendi değerlerinizi girin.";
+  } else { uy.hidden = true; }
+
   el("konumAd").textContent = D.yer.ad;
   el("tarihAd").textContent = (D.gunNo === bugunIndex() ? "Bugün · " : "") + c.gun + " " + AYLAR[c.ay];
   el("cepheAd").textContent = yonAdi(D.cephe);
@@ -908,16 +1055,25 @@ function cizAgir(){
   if(typeof ctaGuncelle === "function") ctaGuncelle();
 }
 
+function sonucDerinlikTazele(){
+  var c = gunuCoz(D.gunNo);
+  var a = analiz(trAn(c.ay, c.gun, D.dakika), D.yer, D.cephe, D.kat, D.karsi, D.mesafe);
+  el("sonucDerin").textContent = (a.durum === "dogrudan" && a.uzak > 0)
+    ? "Saat " + ss(D.dakika) + " itibarıyla ışık odaya yaklaşık " + a.uzak.toFixed(1).replace(".",",") + " metre giriyor."
+    : "";
+}
+
 function ciz(){ cizAnlik(); cizAgir(); }
 
 function mevsimCiz(){
   var kutu = el("mevsim"); kutu.innerHTML = "";
-  [[11,21,"21 Aralık"],[2,21,"21 Mart"],[5,21,"21 Haziran"]].forEach(function(t){
+  [[11,21,"21 Aralık","Kış"],[2,21,"21 Mart","İlkbahar"],[5,21,"21 Haziran","Yaz"]].forEach(function(t){
     var g = gunBoyu(t[0], t[1], D.yer, D.cephe, D.kat, D.karsi, D.mesafe);
     var d = document.createElement("div"); d.className = "mev";
     var not = g.saat === 0 ? "Bu tarihte hiç doğrudan güneş yok."
       : "Yaklaşık " + ss(g.ilk) + " – " + ss(g.son) + " arası.";
-    d.innerHTML = '<div class="mev-ad">'+t[2]+'</div>'+
+    d.innerHTML = '<div class="mev-mevsim">'+t[3]+'</div>'+
+      '<div class="mev-ad">'+t[2]+'</div>'+
       '<div class="mev-saat">'+g.saat.toFixed(1).replace(".",",")+' <span style="font-size:13px;color:var(--sonuk)">saat</span></div>'+
       '<div class="mev-bar"><i style="width:'+Math.min(100,g.saat/14*100)+'%"></i></div>'+
       '<div class="mev-not">'+not+'</div>';
@@ -927,6 +1083,7 @@ function mevsimCiz(){
 
 /* kurulum */
 (function kur(){
+  var y = document.getElementById('yil'); if(y) y.textContent = new Date().getFullYear();
   var ml = el("markaLogo"); if(ml) ml.src = LOGO_URI;
   var baglantidan = baglantiOku();
   var k = el("konum"), gruplar = {};
@@ -1001,7 +1158,7 @@ function mevsimCiz(){
     b.className = "hizli"; b.dataset.i = t.i;
     b.innerHTML = t.ad + "<small>" + t.alt + "</small>";
     b.setAttribute("aria-pressed","false");
-    b.addEventListener("click", function(){ D.gunNo = t.i; el("gun").value = t.i; ciz(); });
+    b.addEventListener("click", function(){ ayrintiyaDokunuldu = true; D.gunNo = t.i; el("gun").value = t.i; ciz(); });
     ht.appendChild(b);
   });
 
@@ -1011,11 +1168,11 @@ function mevsimCiz(){
     el("enlem").value = D.yer.enlem.toFixed(4); el("boylam").value = D.yer.boylam.toFixed(4);
   }
   el("cephe").addEventListener("input", function(e){ D.cephe = +e.target.value; ciz(); });
-  el("gun").addEventListener("input", function(e){ D.gunNo = +e.target.value; ciz(); });
-  el("saat").addEventListener("input", function(e){ D.dakika = +e.target.value; dur(); cizAnlik(); });
-  el("kat").addEventListener("input", function(e){ D.kat = +e.target.value; ciz(); });
-  el("karsi").addEventListener("input", function(e){ D.karsi = +e.target.value; ciz(); });
-  el("mesafe").addEventListener("input", function(e){ D.mesafe = +e.target.value; ciz(); });
+  el("gun").addEventListener("input", function(e){ ayrintiyaDokunuldu = true; D.gunNo = +e.target.value; ciz(); });
+  el("saat").addEventListener("input", function(e){ ayrintiyaDokunuldu = true; D.dakika = +e.target.value; dur(); cizAnlik(); sonucDerinlikTazele(); });
+  el("kat").addEventListener("input", function(e){ ayrintiyaDokunuldu = true; D.kat = +e.target.value; ciz(); });
+  el("karsi").addEventListener("input", function(e){ ayrintiyaDokunuldu = true; D.karsi = +e.target.value; ciz(); });
+  el("mesafe").addEventListener("input", function(e){ ayrintiyaDokunuldu = true; D.mesafe = +e.target.value; ciz(); });
 
   el("oynat").addEventListener("click", function(){ oynuyor ? dur() : basla(); });
   var resizeTimer;
@@ -1707,6 +1864,7 @@ function basla(){
     D.dakika = (D.dakika + 10) % 1440;
     el("saat").value = D.dakika;
     cizAnlik();
+    sonucDerinlikTazele();
   }, 90);
 }
 function dur(){
