@@ -572,8 +572,10 @@ input[type=range]{height:34px}
 
     <div class="ab-blok">
       <p class="ab-baslik">Diğer ücretsiz araçlarım</p>
-      <div class="ab-grid">
+      <div class="ab-grid uc">
       <a class="ab-kart" href="https://www.parseltur.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="#3B8574" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M3.2 6.6 9 4.2l6 2.4 5.8-2.4v13L15 19.8l-6-2.4-5.8 2.4Z"/><path d="M9 4.2v13.2M15 6.6v13.2"/></svg><div><b>ParselTur</b><em>Arsanı 3D drone videosuna çevir</em></div></a>
+      <a class="ab-kart" href="https://3dkatplan.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="#3B8574" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M3.4 3.4h17.2v17.2H3.4Z"/><path d="M3.4 10.6h7.2V3.4M10.6 10.6h10M14.8 10.6v10"/></svg><div><b>3D Kat Planı</b><em>Kat planını üç boyutlu görselleştir</em></div></a>
+      <a class="ab-kart" href="https://ilanfotosu.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="#3B8574" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M3.2 7.4h3.6l1.5-2.2h7.4l1.5 2.2h3.6v13H3.2Z"/><circle cx="12" cy="13.6" r="3.9"/></svg><div><b>İlan Fotoğrafı</b><em>Plaka, yüz ve konum bilgisini temizle</em></div></a>
       </div>
     </div>
 
@@ -1282,6 +1284,22 @@ function qrCiz(x, px, py, boy){
   }
 }
 
+
+/* Masaüstü Chrome da paylaşım API'sini destekliyor; orada doğrudan indirme
+   isteniyor. Paylaşım penceresini yalnızca dokunmatik cihazlarda aç. */
+function dokunmatikMi(){
+  // Masaüstünde (fare varken) paylaşım penceresi değil doğrudan indirme istiyoruz.
+  // Dokunmatik ekranlı Windows dizüstülerde de birincil imleç fare olduğu için
+  // "kaba imleç + üzerine gelme yok" ikilisi mobili doğru ayırır.
+  if(!window.matchMedia) return (navigator.maxTouchPoints || 0) > 1;
+  var kaba = window.matchMedia("(pointer: coarse)").matches;
+  var ustuneGelmeYok = window.matchMedia("(hover: none)").matches;
+  return kaba && ustuneGelmeYok;
+}
+function paylasilabilirMi(dosya){
+  return dokunmatikMi() && dosya && navigator.canShare && navigator.canShare({files:[dosya]});
+}
+
 /* --- 7b. Paylaşılabilir görsel --- */
 function gorselUret(){
   var G = 1080, Y = 1350;
@@ -1415,6 +1433,10 @@ function gorseleOda(x, a, gx, gy, gw, gh){
 
 
 /* Türkçe karakterleri harf harf çevir; yoksa "Üsküdar" -> "-sk-dar" oluyor */
+
+/* Masaüstünde doğrudan indir; dokunmatik cihazda paylaşım penceresi aç
+   (orada "Dosyalara Kaydet" ve WhatsApp tek dokunuşla erişilebiliyor). */
+
 function gorselPaylas(){
   var not = el("paylasNot");
   var cv;
@@ -1425,7 +1447,7 @@ function gorselPaylas(){
     var adi = dosyaAdi("png");
     var dosya = null;
     try { dosya = new File([blob], adi, {type:"image/png"}); } catch(e){}
-    if(dosya && navigator.canShare && navigator.canShare({files:[dosya]})){
+    if(paylasilabilirMi(dosya)){
       navigator.share({files:[dosya], title:"Güneş Alır mı?"})
         .then(function(){ not.textContent = "Görsel paylaşıldı."; })
         .catch(function(){ gorselIndir(blob, adi, not); });
@@ -1452,7 +1474,7 @@ function baglantiKopyala(){
   } else { baglantiYedek(url, not); }
 }
 function baglantiYedek(url, not){
-  if(navigator.share){
+  if(dokunmatikMi() && navigator.share){
     navigator.share({url:url, title:"Güneş Alır mı?"}).catch(function(){});
     not.textContent = "Paylaşım penceresi açıldı.";
   } else {
@@ -1782,7 +1804,7 @@ function pdfIndir(){
     var adi = dosyaAdi("pdf");
     var dosya = null;
     try { dosya = new File([pb], adi, {type:"application/pdf"}); } catch(e){}
-    if(dosya && navigator.canShare && navigator.canShare({files:[dosya]})){
+    if(paylasilabilirMi(dosya)){
       navigator.share({files:[dosya], title:"Güneş Alır mı? raporu"})
         .then(function(){ not.textContent = "Rapor paylaşıldı."; })
         .catch(function(){ gorselIndir(pb, adi, not); not.textContent = "PDF rapor indirildi (3 sayfa)."; });
